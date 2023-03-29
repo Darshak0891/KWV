@@ -1,0 +1,111 @@
+@extends('layouts.app')
+@section('content')
+<!doctype html>
+<html lang="en">
+  <head>
+    
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+  
+    <style>
+        label.error {
+            color: #dc3545;
+            font-size: 14px;
+        }
+    </style>
+  </head>
+<body>
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="card-body">
+    @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div><br />
+    @endif
+    <div class="card">
+    <h5 class="card-header">ADD EMPLOYEE DETAILS</h5>
+    <div class="card-body">
+      <form method="post" action="{{ route('employees.store') }}" id="regForm" autocomplete="off">
+          <div class="mb-3">
+              @csrf
+              <label for="name">Name</label>
+              <input type="text" id="name" class="form-control" name="name" placeholder="ex. Rahul" required=""/>
+          </div>
+          <div class="mb-3">
+              <label for="email">Email</label>
+              <input type="email" id="email" class="form-control" name="email" placeholder="ex. rahul@example.com" required=""/>
+          </div>
+          
+          <div class="mb-3">
+              <label for="password">Password</label>
+              <input type="password" id="password" class="form-control" name="password" placeholder="*****" required=""/>
+          </div>
+          <div class="mb-3">
+              <label for="phone">Phone</label>
+              <input type="text" id="phone" class="form-control" name="phone" placeholder="+91-1234567890" required=""/>
+          </div>
+          <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Add Employee</button>
+      </form>
+  </div>
+</div>
+
+          <script>
+          if ($("#regForm").length > 0) {
+          $("#regForm").validate({
+                    rules: {
+                        name: {
+                        required: true,
+                        maxlength: 20
+                        },
+                    email: {
+                        required: true,
+                        maxlength: 50,
+                        unique: true
+                        },
+                    password: {
+                        required: true,
+                        minlength: 5
+                        },
+                    phone: {
+                        required: true,
+                        minlength: 10,
+                        maxlength: 10,
+                        number: true,
+                        unique: true
+                        },
+                    },
+                    messages: {
+                      name: {
+                        required: "Name is required",
+                        maxlength: "Name cannot be more than 20 characters"
+                    },
+                    email: {
+                        required: "Email is required",
+                        email: "Email must be a valid email address",
+                        maxlength: "Email cannot be more than 50 characters",
+                        unique: "This email id is already taken."
+                    },
+                    password: {
+                        required: "Password is required",
+                        minlength: "Password must be at least 5 characters"
+                    },
+                    phone: {
+                        required: "Phone number is required",
+                        minlength: "Phone number must be of 10 digits",
+                        unique: "This phone no is already taken."
+                    },
+                   },
+                })
+              } 
+          </script>
+  </body>
+  </html>
+@endsection
