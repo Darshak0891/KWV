@@ -16,10 +16,10 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-/* Route::get('/', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return view('auth.login');
 });
- */
+
 Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 
 
@@ -31,6 +31,7 @@ Route::group(['prefix' => 'employees', 'middleware' => ['is_admin']],  function(
     Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
     Route::post('/{employee}/update', [EmployeeController::class, 'update'])->name('employees.update');
     Route::delete('/{employee}/delete', [EmployeeController::class, 'delete'])->name('employees.delete');
+    
 }); 
 
 Route::group(['prefix' => 'societies', 'middleware' => ['is_admin']],  function() {
@@ -49,6 +50,11 @@ Route::group(['prefix' => 'houses', 'middleware' => ['is_admin']],  function() {
     Route::get('/{house}/edit', [HouseController::class, 'edit'])->name('houses.edit');
     Route::post('/{house}/update', [HouseController::class, 'update'])->name('houses.update');
     Route::delete('/{house}/delete', [HouseController::class, 'delete'])->name('houses.delete');
+});
+
+Route::group(['prefix' => 'adminlogs', 'middleware' => ['is_admin']],function(){
+    Route::get('/',[EmployeeController::class, 'adminlog'])->name('adminlogs.index');
+    Route::get('/{id}/show',[EmployeeController::class,'showadminlog'])->name('adminlogs.show');    
 });
 
 

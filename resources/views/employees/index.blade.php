@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('content')
+<html>
+<body>
 <div class="container-xxl flex-grow-1 container-p-y">
               <div class="row g-4 mb-4">
                 <div class="col-sm-6 col-xl-3">
@@ -82,13 +84,45 @@
               <!-- Users List Table -->                
                 <div class="card">
                 <h5 class="card-header">Employee List</h5>
+
+                @if (\Session::has('success'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{!! \Session::get('success') !!}</li>
+                        </ul>
+                    </div>
+                @endif
+
+                <!-- 
+                                <div class="input-group">
+                                    <div class="form-outline">
+                                    <form method="GET" action="{{ route('employees.index') }}">
+                                        <input type="search" name="search" value="{{ request()->input('search') }}" class="form-control" placeholder="Search">
+                                        <button type='submit' class='btn btn-primary'>
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                        </form>
+                                    </div>
+                                </div> -->
+                               
+
+                <div class="input-group">
+                        <div class="form-outline">
+                            <form action="{{ route('employees.index') }}" role="search" method="GET">
+                                <input type="search" name="search"
+                                    class="form-control"
+                                    placeholder="Search..." />
+                            </form>
+                        </div>
+                  </div>
+
                 <div class="row" align="right">
                   <div class="col-12">
                 <a class="btn btn-primary me-sm-3 me-1 data-submit float-right" 
                 href="{{ route('employees.create') }}">Add Employee</a>
                   </div>
                 </div>
-                <div class="table-responsive text-nowrap">
+                <div  class="table-responsive text-nowrap">
                   <table class="table">
                     <caption class="ms-4">
                       List of Employees
@@ -140,10 +174,13 @@
                     </tr>
                     @endforeach  
                     </tbody>
-                  </table>
-                </div>
-              
-            </div>
-            
+                  </table><br>
+                 
+                   {{ $employee->links('pagination::bootstrap-4') }}
+                               
+            </div> 
+</div>
+</body>  
+</html>
 @endsection
     

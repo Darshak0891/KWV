@@ -36,6 +36,20 @@
 <br><br>
 <div class="card">
     <h5 class="card-header">Society List</h5>
+    @if (\Session::has('success'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{!! \Session::get('success') !!}</li>
+                        </ul>
+                    </div>
+    @endif
+    <div class="input-group">
+        <div class="form-outline">
+            <form action="{{ route('societies.index') }}" role="search" method="GET">
+                <input type="search" name="search" class="form-control"  placeholder="Search..." />
+            </form>
+        </div>
+    </div>
         <div class="table-responsive text-nowrap">
             <table class="table">
             <caption class="ms-4">
@@ -49,22 +63,23 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($society as $societies)
+                @foreach($society as $key => $societies)
                 <tr>
-                    <td>{{$societies->id}}</td>
+                    <td>{{ $key+1 }}</td>
                     <td>{{$societies->society_name}}</td>
                     <td class="text-center">
                         <a href="{{ route('societies.edit', $societies->id)}}" class="btn btn-primary btn-sm">Edit</a>
                         <form action="{{ route('societies.delete', $societies->id)}}" method="post" style="display: inline-block">
                             @csrf
                             @method('DELETE')
-                            <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+                            <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this society?')" type="submit">Delete</button>
                         </form>
                     </td>
                 </tr>
                 @endforeach  
             </tbody>
             </table>
+            {{ $society->links() }}
         </div>
     </div>
 </div>

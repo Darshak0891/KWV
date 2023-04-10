@@ -12,8 +12,5 @@ class House extends Model
     protected $fillable = [
         'house_no','society_id','mobile_no','box_no','rent','credit','debit','is_active', 'is_deleted'];
 
-    /* public function society()
-    {
-        return $this->belongsTo(Society::class,'society_id');
-    } */
+  
 }

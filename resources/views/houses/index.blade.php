@@ -82,6 +82,24 @@
               <!-- Users List Table -->                
                 <div class="card">
                 <h5 class="card-header">House List</h5>
+                @if (\Session::has('success'))
+                    <div class="alert alert-success">
+                        <ul>
+                            <li>{!! \Session::get('success') !!}</li>
+                        </ul>
+                    </div>
+                @endif
+
+                <div class="input-group">
+                        <div class="form-outline">
+                            <form action="{{ route('houses.index') }}" role="search" method="GET">
+                                <input type="search" name="search"
+                                    class="form-control"
+                                    placeholder="Search..." />
+                            </form>
+                        </div>
+                </div>
+
                 <div class="row" align="right">
                   <div class="col-12">
                 <a class="btn btn-primary me-sm-3 me-1 data-submit float-right" 
@@ -115,13 +133,20 @@
                         <td>{{$houses->rent}}</td>
                         <td>{{$houses->credit}}</td>
                         <td>{{$houses->debit}}</td>
-                        <td class="text-center">
-                            
+                        <td>
+                        <a href="{{ route('houses.edit', $houses->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                       
+                            <form action="{{ route('houses.delete', $houses->id)}}" method="post" style="display: inline-block">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this house?')" type="submit">Delete</button>
+                              </form>
                         </td>
                     </tr>
                     @endforeach
                     </tbody>
                   </table>
+                  {{ $house->links('pagination::bootstrap-4') }}
                 </div>
                   </div>
                 </div>

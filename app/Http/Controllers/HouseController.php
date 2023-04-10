@@ -5,16 +5,22 @@ use Illuminate\Http\Request;
 use App\Models\House;
 use Validator;
 use App\Models\Society;
+use App\Models\Admin_log;
 use App\Http\Resources\House as HouseResources;
 
 class HouseController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
       
         $house = House::join('societies','societies.id','=','houses.society_id')
-        ->select('houses.house_no', 'houses.mobile_no', 'houses.box_no', 'houses.rent', 'houses.credit', 'houses.debit', 'societies.society_name')
-        ->get();
+        ->select('houses.id','houses.house_no', 'houses.mobile_no', 'houses.box_no', 'houses.rent', 'houses.credit', 'houses.debit', 'societies.society_name')
+        ->where(function ($query) use ($request){
+            if($request->search){
+                $query->where('society_name','LIKE','%'.$request->search.'%')
+                ->orWhere('house_no','LIKE','%'.$request->search.'%');
+            }
+        })->paginate(3);
 
         return view('houses.index', compact('house'));
     }
@@ -27,6 +33,8 @@ class HouseController extends Controller
 
     public function store(Request $request)
     {
+        $user = auth()->user();
+
         $storeData = $request->validate([
             'society_id' => 'required|exists:societies,id',
             'house_no' => 'required',
@@ -38,7 +46,9 @@ class HouseController extends Controller
         ]);
 
         $house = House::create($storeData);
-        return redirect()->route('houses.index')->with('completed','House has been saved');
+        Admin_log::create(['user_id' => $user->id, 'type_id' => 3, 'action_type_id' =>1,
+        'request_id'=> $house->id, 'message' => 'House Added.']);
+        return redirect()->route('houses.index')->with('success','House has been added');
     }
 
     public function show(House $house)
@@ -50,11 +60,14 @@ class HouseController extends Controller
     public function edit($id)
     {
         $house = House::findOrFail($id);
-        return view('houses.edit', compact('house'));
+        $society = Society::get();
+        return view('houses.edit', compact('house','society'));
     }
 
     public function update(Request $request,$id)
     {
+        $user = auth()->user();
+
         $updateData = $request->validate([
             'society_id' => 'required',
             'house_no' => 'required',
@@ -64,15 +77,21 @@ class HouseController extends Controller
             'credit' => 'required',
             'debit' => 'required'
         ]);
-
+        $old_data = House::get()->first();
         House::whereId($id)->update($updateData);
-        return redirect()->route('houses.index')->with('completed', 'House has been updated.');
+        Admin_log::create(['user_id' => $user->id, 'type_id' => 3, 'action_type_id' => 2, 'request_id' => $id,
+        'message' => 'House Updated.', 'edit_old_data' => json_encode($old_data), 'edit_new_data' => json_encode($updateData)]);
+        return redirect()->route('houses.index')->with('success', 'House has been updated.');
     }
 
     public function delete($id)
     {
-        $house = House::findOrFail($id);
+        $user = auth()->user();
+
+        $house = House::where('id' , $id);
         $house->delete();
-        return redirect()->route('houses.index')->with('completed', 'House has been deleted.');
+        Admin_log::create(['user_id' => $user->id,'type_id' => 3,'action_type_id' => 3,
+        'request_id' => $id, 'message' => 'House Deleted.']);
+        return redirect()->route('houses.index')->with('success', 'House has been deleted.');
     }
 }
