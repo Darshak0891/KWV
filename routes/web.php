@@ -5,6 +5,7 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\EmployeeHouseController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -53,8 +54,15 @@ Route::group(['prefix' => 'houses', 'middleware' => ['is_admin']],  function() {
 });
 
 Route::group(['prefix' => 'adminlogs', 'middleware' => ['is_admin']],function(){
-    Route::get('/',[EmployeeController::class, 'adminlog'])->name('adminlogs.index');
-    Route::get('/{id}/show',[EmployeeController::class,'showadminlog'])->name('adminlogs.show');    
+    Route::get('/', [EmployeeController::class, 'adminlog'])->name('adminlogs.index');
+    Route::get('/{id}/show', [EmployeeController::class, 'showadminlog'])->name('adminlogs.show');    
+});
+
+Route::group(['prefix' => 'employee_houses', 'middleware' => ['is_admin']], function(){
+    Route::get('/', [EmployeeHouseController::class, 'index'])->name('employee_houses.index');
+    Route::post('/fetch-houses', [EmployeeHouseController::class, 'fetchHouse'])->name('employee_houses.fetchhouse');
+    Route::get('/create',[EmployeeHouseController::class, 'create'])->name('employee_houses.create');
+    Route::post('/store',[EmployeeHouseController::class, 'store'])->name('employee_houses.store');
 });
 
 

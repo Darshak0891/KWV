@@ -44,7 +44,7 @@
                 <select name="society_id" class="form-control">     
                 <option value="">Select Society</option>
                     @foreach($society as $data)
-                        <option value="{{$data->id}}">{{ $data->society_name }}</option>
+                        <option value="{{$data->id}}" {{$data->id == $house->society_id ? 'selected' : '' }}>{{ $data->society_name }}</option>
                     @endforeach
                 </select>
                 <br>

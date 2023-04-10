@@ -148,7 +148,7 @@
               </a>
             </li>
             <li class="menu-item">
-              <a href="#" class="menu-link">
+              <a href="{{ url('employee_houses') }}" class="menu-link">
                 <i class="menu-icon tf-icons ti ti-app-window"></i>
                 <div data-i18n="EMPLOYEE & HOUSE">EMPLOYEE & HOUSE</div>
               </a>
