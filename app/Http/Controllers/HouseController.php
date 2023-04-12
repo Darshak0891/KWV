@@ -20,7 +20,7 @@ class HouseController extends Controller
                 $query->where('society_name','LIKE','%'.$request->search.'%')
                 ->orWhere('house_no','LIKE','%'.$request->search.'%');
             }
-        })->paginate(3);
+        })->paginate(6);
 
         return view('houses.index', compact('house'));
     }

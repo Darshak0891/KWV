@@ -60,9 +60,10 @@ Route::group(['prefix' => 'adminlogs', 'middleware' => ['is_admin']],function(){
 
 Route::group(['prefix' => 'employee_houses', 'middleware' => ['is_admin']], function(){
     Route::get('/', [EmployeeHouseController::class, 'index'])->name('employee_houses.index');
-    Route::post('/fetch-houses', [EmployeeHouseController::class, 'fetchHouse'])->name('employee_houses.fetchhouse');
+    Route::post('/fetch-society',[EmployeeHouseController::class, 'fetchSociety'])->name('employee_houses.fetchsociety');
     Route::get('/create',[EmployeeHouseController::class, 'create'])->name('employee_houses.create');
     Route::post('/store',[EmployeeHouseController::class, 'store'])->name('employee_houses.store');
+    Route::get('/{id}/show',[EmployeeHouseController::class, 'show'])->name('employee_houses.show');
 });
 
 

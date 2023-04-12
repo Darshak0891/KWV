@@ -17,7 +17,6 @@ class CreateEmployeeHousesTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
             $table->bigInteger('society_id');
-            $table->bigInteger('house_id');
             $table->timestamps();
         });
     }

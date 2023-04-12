@@ -18,7 +18,7 @@ class EmployeeController extends Controller
             if($request->search){
                 $query->where('name','LIKE','%'.$request->search.'%');
             }
-        })->where(['is_admin' => 0])->paginate(3);
+        })->where(['is_admin' => 0])->paginate(5);
 
         /* $employee = User::where('name', 'LIKE', '%'.$request->search.'%')->orderBy('id', 'ASC')->where(['is_admin' => 0])->paginate(3);
         return view('employees.index',compact('employee')); */

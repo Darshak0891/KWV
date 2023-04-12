@@ -14,7 +14,7 @@ class SocietyController extends Controller
             if($request->search){
                 $query->where('society_name', 'LIKE','%'.$request->search.'%');
             }
-        })->paginate(4);
+        })->paginate(5);
         return view('societies.index',compact('society'));
     }
     public function create()

@@ -25,7 +25,15 @@
                       </tr>
                     </thead>
                     <tbody>
-                  
+                      @foreach($emp_name as $key => $data)
+                        <tr>
+                          <td>{{ $key+1 }}</td>
+                          <td>{{ $data->name }}</td>
+                          <td>
+                            <a href="{{ route('employee_houses.show', $data->id) }}" class="btn btn-primary">Show Society</a>
+                          </td>
+                        </tr>
+                      @endforeach
                     </tbody>
                   </table><br>                               
             </div> 
