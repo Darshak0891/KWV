@@ -6,6 +6,7 @@ use App\Http\Controllers\SocietyController;
 use App\Http\Controllers\HouseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EmployeeHouseController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,12 +17,13 @@ use App\Http\Controllers\EmployeeHouseController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Auth::routes(['register' => false]);
 Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('admin/home', [HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
+Route::get('admin/dashboard', [HomeController::class, 'adminDashboard'])->name('admin.dashboard')->middleware('is_admin');
+Route::get('user/dashboard', [HomeController::class, 'userDashboard'])->name('user.dashboard');
 
 
 Route::group(['prefix' => 'employees', 'middleware' => ['is_admin']],  function() {
@@ -64,9 +66,12 @@ Route::group(['prefix' => 'employee_houses', 'middleware' => ['is_admin']], func
     Route::get('/create',[EmployeeHouseController::class, 'create'])->name('employee_houses.create');
     Route::post('/store',[EmployeeHouseController::class, 'store'])->name('employee_houses.store');
     Route::get('/{id}/show',[EmployeeHouseController::class, 'show'])->name('employee_houses.show');
+    Route::get('/{house}/show_house',[EmployeeHouseController::class, 'showHouse'])->name('employee_houses.show_house');
 });
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/allocatesocieties', [UserController::class, 'index'])->name('allocatesocieties.index');
+Route::get('/{id}/show', [UserController::class, 'show'])->name('allocatesocieties.show');

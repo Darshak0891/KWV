@@ -27,7 +27,7 @@ class EmployeeHouseController extends Controller
     public function fetchSociety(Request $request)
     {
        // return($request);
-        $data = EmployeeHouse::where('user_id', $request->user_id)->pluck('society_id');
+        $data = EmployeeHouse::pluck('society_id');
         //return $data;
         $emp_soc['societies'] = Society::whereNotIn('id', $data)->get();
         return response()->json($emp_soc);
@@ -50,7 +50,6 @@ class EmployeeHouseController extends Controller
             'society_id' => 'required',
         ]);
 
-        //dd($request);
         EmployeeHouse::create(['user_id' => $request->user_id, 'society_id' => $request->society_id ]);
         
         return redirect()->route('employee_houses.index')->with('success','Data Has Been Added.'); 
@@ -65,13 +64,11 @@ class EmployeeHouseController extends Controller
         return view('employee_houses.show',compact('show'));
     }
 
-    /* public function showHouse($house)
+    public function showHouse($house)
     {
-        //dd($id);
-         $show = EmployeeHouse::join('houses', 'houses.id', '=', 'employee_houses.house_id')
-        ->select('employee_houses.id', 'houses.house_no')->where('employee_houses.society_id', $house)->get(); 
-       
-        return view('employee_houses.show_house', compact('show'));
+         $show_house = House::where('society_id', $house)->get();
+        //dd($show_house);
+        return view('employee_houses.show_house',compact('show_house'));
 
-    } */
+    }
 }

@@ -3,8 +3,8 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="card">
     <div class="card-body">
-        <h5 class="card-header">Society List</h5>
-        <div class="table responsive text-nowrap">
+        <h5 class="card-header">Allocated Society List</h5>
+        <div  class="table-responsive text-nowrap">
             <table class="table">
                 <thead>
                     <tr>
@@ -13,12 +13,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($show as $data)
+                    @foreach($society as $data)
                     <tr>
-                        <td>{{$data->society_name}}</td>
-                        <td>
-                            <a href="{{ route('employee_houses.show_house', $data->id) }}" class="btn btn-primary">Show Houses</a>
-                        </td>
+                        <td>{{ $data->society_name }}</td>
+                        <td><a href="{{ route('allocatesocieties.show', $data->id) }}" class="btn btn-primary">Show House</a></td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -27,4 +25,5 @@
     </div>
     </div>
 </div>
+
 @endsection
