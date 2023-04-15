@@ -24,6 +24,7 @@
 
 <body>
     <div class="container-xxl flex-grow-1 container-p-y">
+        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">House /</span> Edit House</h4>
         <div class="card-body">
             @if ($errors->any())
             <div class="alert alert-danger">
@@ -35,7 +36,6 @@
             </div><br />
             @endif
             <div class="card">
-                <h5 class="card-header">Edit House Details</h5>
                 <div class="card-body">
                     <form method="post" action="{{ route('houses.update', $house->id) }}" id="hsForm">
                         <div class="mb-3">

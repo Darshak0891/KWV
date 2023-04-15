@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('content')
+@if (\Session::has('success'))
+<div class="alert alert-success">
+    <ul>
+        <li>{!! \Session::get('success') !!}</li>
+    </ul>
+</div>
+@endif
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
         <div class="row">
@@ -17,7 +24,8 @@
                         </div>
                         <div class="col-5 text-center text-sm-left">
                             <div class="card-body pb-0 px-0 px-md-4">
-                                <img src="../../assets/img/illustrations/card-advance-sale.png" height="140" alt="view sales" />
+                                <img src="../../assets/img/illustrations/card-advance-sale.png" height="140"
+                                    alt="view sales" />
                             </div>
                         </div>
                     </div>

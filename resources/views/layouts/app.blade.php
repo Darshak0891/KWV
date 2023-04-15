@@ -116,58 +116,72 @@
                     @if(auth()->user()->is_admin == 1)
                     <li class="menu-item {{ Request::routeIs(['admin.dashboard']) ? 'active' : '' }}">
                         <a href="{{ url('admin/dashboard') }}" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-app-window"></i>
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
                             <div data-i18n="DASHBOARD">DASHBOARD</div>
                         </a>
                     </li>
                     <li
                         class="menu-item {{ Request::routeIs(['employees.index', 'employees.create', 'employees.edit']) ? 'active' : '' }}">
                         <a href="{{ url('employees') }}" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-app-window"></i>
+                            <i class="menu-icon tf-icons ti ti-users"></i>
                             <div data-i18n="EMPLOYEE">EMPLOYEE</div>
                         </a>
                     </li>
                     <li
                         class="menu-item {{ Request::routeIs(['societies.index', 'societies.create', 'societies.edit']) ? 'active' : '' }}">
                         <a href="{{ url('societies') }}" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-app-window"></i>
+                            <i class="menu-icon tf-icons ti ti-building"></i>
                             <div data-i18n="SOCIETY">SOCIETY</div>
                         </a>
                     </li>
                     <li
                         class="menu-item {{ Request::routeIs(['houses.index', 'houses.create', 'houses.edit']) ? 'active' : '' }}">
                         <a href="{{ url('houses') }}" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-app-window"></i>
+                            <i class="menu-icon tf-icons ti ti-home"></i>
                             <div data-i18n="HOUSE">HOUSE</div>
                         </a>
                     </li>
                     <li
                         class="menu-item {{ Request::routeIs(['employee_houses.index', 'employee_houses.create', 'employee_houses.show', 'employee_houses.show_house']) ? 'active' : '' }}">
                         <a href="{{ url('employee_houses') }}" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-app-window"></i>
+                            <!-- <i class="menu-icon tf-icons ti ti-building-user"></i> -->
+                            <i class="fa-solid fa-building-user"></i>&nbsp;
                             <div data-i18n="EMPLOYEE & HOUSE">EMPLOYEE & HOUSE</div>
                         </a>
                     </li>
                     <li class="menu-item {{ Request::routeIs(['adminlogs.index', 'adminlogs.show']) ? 'active' : '' }}">
                         <a href="{{ route('adminlogs.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-app-window"></i>
+                            <i class="menu-icon tf-icons ti ti-id"></i>
                             <div data-i18n="LOGS">LOGS</div>
                         </a>
                     </li>
+                    <!-- 
+                    <li class="menu-item {{ Request::routeIs(['profiles.change-password']) ? 'active' : '' }}">
+                        <a href="{{ route('profiles.change-password') }}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-lock"></i>
+                            <div data-i18n="CHANGE PASSWORD">CHANGE PASSWORD</div>
+                        </a>
+                    </li> -->
                     @else
                     <li class="menu-item {{ Request::routeIs(['user.dashboard']) ? 'active' : '' }}">
                         <a href="{{ url('user/dashboard') }}" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-app-window"></i>
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
                             <div data-i18n="DASHBOARD">DASHBOARD</div>
                         </a>
                     </li>
                     <li
                         class="menu-item {{ Request::routeIs(['allocatesocieties.index', 'allocatesocieties.show']) ? 'active' : '' }}">
                         <a href="{{ route('allocatesocieties.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons ti ti-app-window"></i>
+                            <i class="menu-icon tf-icons ti ti-building"></i>
                             <div data-i18n="ALLOCATED SOCIETY">ALLOCATED SOCIETY</div>
                         </a>
                     </li>
+                    <!-- <li class="menu-item {{ Request::routeIs(['profiles.change-password']) ? 'active' : '' }}">
+                        <a href="{{ route('profiles.change-password') }}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-lock"></i>
+                            <div data-i18n="CHANGE PASSWORD">CHANGE PASSWORD</div>
+                        </a>
+                    </li> -->
                     @endif
                 </ul>
             </aside>
@@ -212,8 +226,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">RK RD</span>
-                                                    <small class="text-muted">Admin</small>
+                                                    <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
+                                                    <!-- <small class="text-muted">Admin</small> -->
                                                 </div>
                                             </div>
                                         </a>
@@ -222,7 +236,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#">
+                                        <a class="dropdown-item" href="{{ route('profiles.index') }}">
                                             <i class="ti ti-user-check me-2 ti-sm"></i>
                                             <span class="align-middle">My Profile</span>
                                         </a>
@@ -276,10 +290,6 @@
                                     document.write(new Date().getFullYear());
                                     </script>
                                     , made with ❤️ by <a href="#" target="_blank" class="fw-semibold">WEB-TIME</a>
-                                </div>
-                                <div>
-                                    <a href="https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/documentation/"
-                                        target="_blank" class="footer-link me-4">Documentation</a>
                                 </div>
                             </div>
                         </div>
