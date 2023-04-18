@@ -66,6 +66,12 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
+    <!-- import house  -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+    <!-- / -->
+
     <style>
     label.error {
         color: #dc3545;
@@ -128,14 +134,14 @@
                         </a>
                     </li>
                     <li
-                        class="menu-item {{ Request::routeIs(['societies.index', 'societies.create', 'societies.edit']) ? 'active' : '' }}">
+                        class="menu-item {{ Request::routeIs(['societies.index', 'societies.create', 'societies.edit', 'societies.fileImportExport']) ? 'active' : '' }}">
                         <a href="{{ url('societies') }}" class="menu-link">
                             <i class="menu-icon tf-icons ti ti-building"></i>
                             <div data-i18n="SOCIETY">SOCIETY</div>
                         </a>
                     </li>
                     <li
-                        class="menu-item {{ Request::routeIs(['houses.index', 'houses.create', 'houses.edit']) ? 'active' : '' }}">
+                        class="menu-item {{ Request::routeIs(['houses.index', 'houses.create', 'houses.edit', 'houses.fileImportExport']) ? 'active' : '' }}">
                         <a href="{{ url('houses') }}" class="menu-link">
                             <i class="menu-icon tf-icons ti ti-home"></i>
                             <div data-i18n="HOUSE">HOUSE</div>

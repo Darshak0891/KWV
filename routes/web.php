@@ -46,6 +46,8 @@ Route::group(['prefix' => 'societies', 'middleware' => ['is_admin']],  function 
     Route::get('/{society}/edit', [SocietyController::class, 'edit'])->name('societies.edit');
     Route::post('/{society}/update', [SocietyController::class, 'update'])->name('societies.update');
     Route::delete('/{society}/delete', [SocietyController::class, 'delete'])->name('societies.delete');
+    Route::get('/file-import-export', [SocietyController::class, 'fileImportExport'])->name('societies.fileImportExport');
+    Route::post('/file_import', [SocietyController::class, 'fileImport'])->name('societies.file_import');
 });
 
 Route::group(['prefix' => 'houses', 'middleware' => ['is_admin']],  function () {
@@ -55,6 +57,8 @@ Route::group(['prefix' => 'houses', 'middleware' => ['is_admin']],  function () 
     Route::get('/{house}/edit', [HouseController::class, 'edit'])->name('houses.edit');
     Route::post('/{house}/update', [HouseController::class, 'update'])->name('houses.update');
     Route::delete('/{house}/delete', [HouseController::class, 'delete'])->name('houses.delete');
+    Route::get('/file-import-export', [HouseController::class, 'fileImportExport'])->name('houses.fileImportExport');
+    Route::post('/file_import', [HouseController::class, 'fileImport'])->name('houses.file_import');
 });
 
 Route::group(['prefix' => 'adminlogs', 'middleware' => ['is_admin']], function () {

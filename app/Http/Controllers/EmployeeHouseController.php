@@ -75,6 +75,7 @@ class EmployeeHouseController extends Controller
 
     public function showHouse($house)
     {
+
         $show_house = House::where('society_id', $house)->get();
         //dd($show_house);
         return view('employee_houses.show_house', compact('show_house'));

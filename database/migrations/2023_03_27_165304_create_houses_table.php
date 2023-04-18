@@ -16,12 +16,10 @@ class CreateHousesTable extends Migration
         Schema::create('houses', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('house_no');
+            $table->string('name');
             $table->bigInteger('society_id');
             $table->string('mobile_no');
             $table->string('box_no');
-            $table->string('rent');
-            $table->string('credit');
-            $table->string('debit');
             $table->boolean('is_active')->default(0);
             $table->boolean('is_deleted')->default(0);
             $table->timestamps();

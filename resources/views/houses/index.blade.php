@@ -102,6 +102,9 @@
             <div class="col-12">
                 <a class="btn btn-primary me-sm-3 me-1 data-submit float-right" href="{{ route('houses.create') }}">Add
                     House</a>
+                <a class="btn btn-primary me-sm-3 me-1 data-submit float-right"
+                    href="{{ route('houses.fileImportExport') }}">Import
+                    House</a>
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <caption class="ms-4">
@@ -115,8 +118,6 @@
                                 <th>Mobile Number</th>
                                 <th>Box Number</th>
                                 <th>Rent</th>
-                                <th>Credit</th>
-                                <th>Debit</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -129,15 +130,17 @@
                                 <td>{{$houses->mobile_no}}</td>
                                 <td>{{$houses->box_no}}</td>
                                 <td>{{$houses->rent}}</td>
-                                <td>{{$houses->credit}}</td>
-                                <td>{{$houses->debit}}</td>
                                 <td>
-                                    <a href="{{ route('houses.edit', $houses->id) }}" class="btn btn-primary btn-sm">Edit</a>
+                                    <a href="{{ route('houses.edit', $houses->id) }}"
+                                        class="btn btn-primary btn-sm">Edit</a>
 
-                                    <form action="{{ route('houses.delete', $houses->id)}}" method="post" style="display: inline-block">
+                                    <form action="{{ route('houses.delete', $houses->id)}}" method="post"
+                                        style="display: inline-block">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this house?')" type="submit">Delete</button>
+                                        <button class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Are you sure you want to remove this house?')"
+                                            type="submit">Delete</button>
                                     </form>
                                 </td>
                             </tr>
