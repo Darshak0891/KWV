@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Society;
 use App\Models\House;
+use \Carbon\Carbon;
 use App\Models\Admin_log;
 
 class EmployeeHouseController extends Controller
@@ -75,7 +76,8 @@ class EmployeeHouseController extends Controller
 
     public function showHouse($house)
     {
-
+        $from = Carbon::now()->startOfMonth();
+        $to = Carbon::now()->endOfMonth()->addDay(9);
         $show_house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
             ->select(
                 'houses.id',
@@ -83,10 +85,12 @@ class EmployeeHouseController extends Controller
                 'houses.name',
                 'houses.mobile_no',
                 'houses.box_no',
+                'house_rents.date',
                 'house_rents.rent',
                 'house_rents.baki',
                 'house_rents.jama'
             )
+            ->whereBetween('house_rents.date', [$from, $to])
             ->where('society_id', $house)->get();
         // dd($show_house);
         return view('employee_houses.show_house', compact('show_house'));

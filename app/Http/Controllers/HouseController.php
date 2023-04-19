@@ -7,6 +7,8 @@ use App\Models\House;
 use Validator;
 use App\Models\Society;
 use App\Models\Admin_log;
+use \Carbon\Carbon;
+
 use App\Models\HouseRent;
 use App\Http\Resources\House as HouseResources;
 
@@ -17,7 +19,8 @@ class HouseController extends Controller
 {
     public function index(Request $request)
     {
-
+        $from = Carbon::now()->startOfMonth();
+        $to = Carbon::now()->endOfMonth()->addDay(9);
         $house = House::join('societies', 'societies.id', '=', 'houses.society_id')
             ->join('house_rents', 'house_rents.house_id', '=', 'houses.id')
             ->select('houses.id', 'houses.house_no', 'houses.name', 'houses.mobile_no', 'houses.box_no', 'house_rents.rent', 'societies.society_name')
@@ -26,7 +29,9 @@ class HouseController extends Controller
                     $query->where('society_name', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('house_no', 'LIKE', '%' . $request->search . '%');
                 }
-            })->paginate(10);
+            })
+            ->whereBetween('house_rents.date', [$from, $to])
+            ->paginate(10);
 
         return view('houses.index', compact('house'));
     }
@@ -52,7 +57,10 @@ class HouseController extends Controller
 
 
         $house = House::create($storeData);
-        HouseRent::create(['house_id' => $house->id, 'rent' => $request['rent'], 'baki' => $request['rent']]);
+        HouseRent::create([
+            'house_id' => $house->id, 'rent' => $request['rent'], 'baki' => $request['rent'],
+            'date' => Carbon::now()
+        ]);
         Admin_log::create([
             'user_id' => $user->id, 'type_id' => 3, 'action_type_id' => 1,
             'request_id' => $house->id, 'message' => 'House Added.'

@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\HouseRent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use \Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -25,6 +26,8 @@ class UserController extends Controller
 
     public function show($id)
     {
+        $from = Carbon::now()->startOfMonth();
+        $to = Carbon::now()->endOfMonth()->addDay(9);
         $show_house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
             ->select(
                 'houses.id',
@@ -35,8 +38,10 @@ class UserController extends Controller
                 'house_rents.rent',
                 'house_rents.baki',
                 'house_rents.jama',
+                'house_rents.date',
                 'house_rents.id as hId',
             )
+            ->whereBetween('house_rents.date', [$from, $to])
             ->where('society_id', $id)->get();
         //dd($show_house);
         return view('allocatesocieties.show', compact('show_house'));
