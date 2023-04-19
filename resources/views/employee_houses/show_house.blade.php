@@ -14,8 +14,8 @@
                                 <td>Mobile No.</td>
                                 <td>Box No.</td>
                                 <td>Rent</td>
-                                <td>Credit</td>
-                                <td>Debit</td>
+                                <td>Baki</td>
+                                <td>Jama</td>
                             </tr>
                         <tbody>
                             @foreach($show_house as $data)
@@ -24,8 +24,8 @@
                                 <td>{{ $data->mobile_no }}</td>
                                 <td>{{ $data->box_no }}</td>
                                 <td>{{ $data->rent }}</td>
-                                <td>{{ $data->credit }}</td>
-                                <td>{{ $data->debit }}</td>
+                                <td>{{ $data->baki }}</td>
+                                <td>{{ $data->jama }}</td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -17,8 +17,10 @@ class CreateHouseRentsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('house_id');
             $table->string('rent');
-            $table->string('baki')->default(0);
-            $table->string('jama');
+            $table->string('baki');
+            $table->string('jama')->default(0);
+            $table->string('date')->nullable();
+            $table->text('remark')->nullable();
             $table->timestamps();
         });
     }

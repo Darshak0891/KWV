@@ -15,39 +15,17 @@ class HousesImport implements ToModel
      */
     public function model(array $row)
     {
-        if (House::join('societies', 'societies.id', '=', 'houses.society_id')
-            ->select('societies.society_name')->where('society_name', '=', $row[2])->exists()
-        ) {
+        $isExists = Society::where('society_name', '=', $row[2])->first();
+        if ($isExists) {
 
             return new House([
                 'house_no'     => $row[0],
                 'name'         => $row[1],
-                'society_id'   => $row[2],
+                'society_id'   => $isExists->id,
                 'mobile_no'    => $row[3],
                 'box_no'       => $row[4],
                 'rent'         => $row[5],
             ]);
-        } else {
-            return back()->with('error', 'Society Not Found.');
         }
     }
-
-    /* {
-        $house = House::join('societies', 'societies.id', '=', 'houses.society_id')->select('societies.society_name')->get();
-
-        if($house == $row[2])
-        {
-            return new House([
-                'house_no'     => $row[0],
-                'name'         => $row[1],
-                'society_id'   => $row[2],
-                'mobile_no'    => $row[3],
-                'box_no'       => $row[4],
-                'rent'         => $row[5],
-            ]);
-        }else
-        {
-            return back()->with('error', 'Society Not Found.');
-        }
-    } */
 }

@@ -67,7 +67,7 @@ class EmployeeHouseController extends Controller
     public function show($id)
     {
         $show = EmployeeHouse::join('societies', 'societies.id', '=', 'employee_houses.society_id')
-            ->select('employee_houses.id', 'societies.society_name')->where('employee_houses.user_id', $id)->get();
+            ->select('employee_houses.id', 'societies.id as societyId', 'societies.society_name')->where('employee_houses.user_id', $id)->get();
 
 
         return view('employee_houses.show', compact('show'));
@@ -76,8 +76,19 @@ class EmployeeHouseController extends Controller
     public function showHouse($house)
     {
 
-        $show_house = House::where('society_id', $house)->get();
-        //dd($show_house);
+        $show_house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
+            ->select(
+                'houses.id',
+                'houses.house_no',
+                'houses.name',
+                'houses.mobile_no',
+                'houses.box_no',
+                'house_rents.rent',
+                'house_rents.baki',
+                'house_rents.jama'
+            )
+            ->where('society_id', $house)->get();
+        // dd($show_house);
         return view('employee_houses.show_house', compact('show_house'));
     }
 

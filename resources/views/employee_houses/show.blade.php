@@ -19,7 +19,7 @@
                             <tr>
                                 <td>{{$data->society_name}}</td>
                                 <td>
-                                    <a href="{{ route('employee_houses.show_house', $data->id) }}" class="btn btn-primary">Show Houses</a>
+                                    <a href="{{ route('employee_houses.show_house', $data->societyId) }}" class="btn btn-primary">Show Houses</a>
                                     <form action="{{ route('employee_houses.delete', $data->id)}}" method="post" style="display: inline-block">
                                         @csrf
                                         @method('DELETE')

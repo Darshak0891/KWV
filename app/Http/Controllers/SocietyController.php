@@ -7,7 +7,7 @@ use App\Models\Society;
 use App\Models\Admin_log;
 
 use Maatwebsite\Excel\Facades\Excel;
-use App\Imports\UsersImport;
+use App\Imports\SocietyImport;
 
 class SocietyController extends Controller
 {
@@ -91,7 +91,7 @@ class SocietyController extends Controller
 
     public function fileImport(Request $request)
     {
-        Excel::import(new UsersImport, $request->file('file')->store('temp'));
-        return back();
+        Excel::import(new SocietyImport, $request->file('file')->store('temp'));
+        return redirect()->route('societies.index')->with('success', 'Import Successfully!.');
     }
 }

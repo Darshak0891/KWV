@@ -1,5 +1,12 @@
 @extends('layouts.app')
 @section('content')
+@if (\Session::has('success'))
+<div class="alert alert-success">
+    <ul>
+        <li>{!! \Session::get('success') !!}</li>
+    </ul>
+</div>
+@endif
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Allocated Society /</span> Society List</h4>
     <div class="card">

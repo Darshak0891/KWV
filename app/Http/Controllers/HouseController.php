@@ -7,6 +7,7 @@ use App\Models\House;
 use Validator;
 use App\Models\Society;
 use App\Models\Admin_log;
+use App\Models\HouseRent;
 use App\Http\Resources\House as HouseResources;
 
 use Maatwebsite\Excel\Facades\Excel;
@@ -18,13 +19,14 @@ class HouseController extends Controller
     {
 
         $house = House::join('societies', 'societies.id', '=', 'houses.society_id')
-            ->select('houses.id', 'houses.house_no', 'houses.name', 'houses.mobile_no', 'houses.box_no', 'houses.rent', 'societies.society_name')
+            ->join('house_rents', 'house_rents.house_id', '=', 'houses.id')
+            ->select('houses.id', 'houses.house_no', 'houses.name', 'houses.mobile_no', 'houses.box_no', 'house_rents.rent', 'societies.society_name')
             ->where(function ($query) use ($request) {
                 if ($request->search) {
                     $query->where('society_name', 'LIKE', '%' . $request->search . '%')
                         ->orWhere('house_no', 'LIKE', '%' . $request->search . '%');
                 }
-            })->paginate(6);
+            })->paginate(10);
 
         return view('houses.index', compact('house'));
     }
@@ -48,7 +50,9 @@ class HouseController extends Controller
             'rent' => 'required',
         ]);
 
+
         $house = House::create($storeData);
+        HouseRent::create(['house_id' => $house->id, 'rent' => $request['rent'], 'baki' => $request['rent']]);
         Admin_log::create([
             'user_id' => $user->id, 'type_id' => 3, 'action_type_id' => 1,
             'request_id' => $house->id, 'message' => 'House Added.'
@@ -109,7 +113,8 @@ class HouseController extends Controller
 
     public function fileImport(Request $request)
     {
-        Excel::import(new HousesImport, $request->file('file')->store('temp'));
-        return back();
+        $dad = Excel::import(new HousesImport, $request->file('file')->store('temp'));
+        // dd($dad);
+        return redirect()->route('houses.index')->with('success', 'Import Successfully!.');
     }
 }

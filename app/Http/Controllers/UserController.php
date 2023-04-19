@@ -6,6 +6,7 @@ use App\Models\EmployeeHouse;
 use App\Models\Society;
 use App\Models\House;
 use App\Models\User;
+use App\Models\HouseRent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -24,9 +25,35 @@ class UserController extends Controller
 
     public function show($id)
     {
-        $show_house = House::where('society_id', $id)->get();
+        $show_house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
+            ->select(
+                'houses.id',
+                'houses.house_no',
+                'houses.name',
+                'houses.mobile_no',
+                'houses.box_no',
+                'house_rents.rent',
+                'house_rents.baki',
+                'house_rents.jama',
+                'house_rents.id as hId',
+            )
+            ->where('society_id', $id)->get();
         //dd($show_house);
         return view('allocatesocieties.show', compact('show_house'));
+    }
+
+    public function action($id)
+    {
+        $action = HouseRent::where('id', $id)->first();
+        // dd($action);
+        return view('allocatesocieties.action', compact('action'));
+    }
+
+    public function actionpost(Request $request)
+    {
+        $data = HouseRent::where('id', $request['actionid'])->first();
+        HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $data->baki - $request['jama'], 'remark' => $request['remark']]);
+        return redirect()->route('allocatesocieties.index')->with('success', 'Successfully Taken.');
     }
 
     public function profile()
