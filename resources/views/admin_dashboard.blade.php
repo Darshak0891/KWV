@@ -8,10 +8,10 @@
                     <div class="d-flex align-items-end row">
                         <div class="col-7">
                             <div class="card-body text-nowrap">
-                                <h5 class="card-title mb-0">Congratulations {{auth()->user()->name}}! 🎉</h5>
-                                <p class="mb-2">Best seller of the month</p>
-                                <h4 class="text-primary mb-1">$48.9k</h4>
-                                <a href="javascript:;" class="btn btn-primary">View Sales</a>
+                                <h3 class="card-title mb-0">Hey {{auth()->user()->name}}! </h5>
+                                    <p class="mb-2">WELCOME TO KWV!</p>
+                                    <!-- <h4 class="text-primary mb-1">$48.9k</h4>
+                                <a href="javascript:;" class="btn btn-primary">View Sales</a> -->
                             </div>
                         </div>
                         <div class="col-5 text-center text-sm-left">
@@ -29,7 +29,7 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between mb-3">
                             <h5 class="card-title mb-0">Statistics</h5>
-                            <small class="text-muted">Updated 1 month ago</small>
+                            <!-- <small class="text-muted">Updated 1 month ago</small> -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -37,10 +37,10 @@
                             <div class="col-md-3 col-6">
                                 <div class="d-flex align-items-center">
                                     <div class="badge rounded-pill bg-label-primary me-3 p-2">
-                                        <i class="ti ti-chart-pie-2 ti-sm"></i>
+                                        <i class="menu-icon tf-icons ti ti-users"></i>
                                     </div>
                                     <div class="card-info">
-                                        <h5 class="mb-0">230k</h5>
+                                        <h5 class="mb-0">6</h5>
                                         <small>Employees</small>
                                     </div>
                                 </div>
@@ -48,10 +48,10 @@
                             <div class="col-md-3 col-6">
                                 <div class="d-flex align-items-center">
                                     <div class="badge rounded-pill bg-label-info me-3 p-2">
-                                        <i class="ti ti-users ti-sm"></i>
+                                        <i class="menu-icon tf-icons ti ti-building"></i>
                                     </div>
                                     <div class="card-info">
-                                        <h5 class="mb-0">8.549k</h5>
+                                        <h5 class="mb-0">100</h5>
                                         <small>Societies</small>
                                     </div>
                                 </div>
@@ -59,10 +59,10 @@
                             <div class="col-md-3 col-6">
                                 <div class="d-flex align-items-center">
                                     <div class="badge rounded-pill bg-label-danger me-3 p-2">
-                                        <i class="ti ti-shopping-cart ti-sm"></i>
+                                        <i class="menu-icon tf-icons ti ti-home"></i>
                                     </div>
                                     <div class="card-info">
-                                        <h5 class="mb-0">1.423k</h5>
+                                        <h5 class="mb-0">3000</h5>
                                         <small>Houses</small>
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
                                         <i class="ti ti-currency-dollar ti-sm"></i>
                                     </div>
                                     <div class="card-info">
-                                        <h5 class="mb-0">$9745</h5>
+                                        <h5 class="mb-0">9745</h5>
                                         <small>Revenue</small>
                                     </div>
                                 </div>
@@ -94,8 +94,8 @@
                                     <small>Weekly Report</small>
                                 </div>
                                 <div class="chart-statistics">
-                                    <h3 class="card-title mb-1">$4,673</h3>
-                                    <span class="badge bg-label-success">+15.2%</span>
+                                    <h3 class="card-title mb-1">Rs.40,673</h3>
+                                    <!-- <span class="badge bg-label-success">+15.2%</span> -->
                                 </div>
                             </div>
                             <div id="revenueGrowth"></div>
@@ -109,8 +109,8 @@
                 <div class="card h-100">
                     <div class="card-header d-flex justify-content-between">
                         <div class="card-title m-0 me-2">
-                            <h5 class="m-0 me-2">Browser States</h5>
-                            <small class="text-muted">Counter April 2022</small>
+                            <h5 class="m-0 me-2">Employers Collection</h5>
+                            <!-- <small class="text-muted">Counter April 2022</small> -->
                         </div>
                         <div class="dropdown">
                             <button class="btn p-0" type="button" id="employeeList" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -126,11 +126,12 @@
                     <div class="card-body">
                         <ul class="p-0 m-0">
                             <li class="d-flex mb-4 pb-1 align-items-center">
-                                <img src="../../assets/img/icons/brands/chrome.png" alt="Chrome" height="28" class="me-3 rounded" />
+                                <i class="menu-icon tf-icons ti ti-users"></i>
+                                <!-- <img src="../../assets/img/icons/brands/chrome.png" alt="Chrome" height="28" class="me-3 rounded" /> -->
                                 <div class="d-flex w-100 align-items-center gap-2">
                                     <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
                                         <div>
-                                            <h6 class="mb-0">Google Chrome</h6>
+                                            <h6 class="mb-0">Test 1</h6>
                                         </div>
 
                                         <div class="user-progress d-flex align-items-center gap-2">
@@ -141,11 +142,12 @@
                                 </div>
                             </li>
                             <li class="d-flex mb-4 pb-1 align-items-center">
-                                <img src="../../assets/img/icons/brands/safari.png" alt="Safari" height="28" class="me-3 rounded" />
+                                <i class="menu-icon tf-icons ti ti-users"></i>
+                                <!-- <img src="../../assets/img/icons/brands/safari.png" alt="Safari" height="28" class="me-3 rounded" /> -->
                                 <div class="d-flex w-100 align-items-center gap-2">
                                     <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
                                         <div>
-                                            <h6 class="mb-0">Apple Safari</h6>
+                                            <h6 class="mb-0">Test 2</h6>
                                         </div>
                                         <div class="user-progress d-flex align-items-center gap-2">
                                             <h6 class="mb-0">70.6%</h6>
@@ -155,11 +157,12 @@
                                 </div>
                             </li>
                             <li class="d-flex mb-4 pb-1 align-items-center">
-                                <img src="../../assets/img/icons/brands/firefox.png" alt="Firefox" height="28" class="me-3 rounded" />
+                                <i class="menu-icon tf-icons ti ti-users"></i>
+                                <!-- <img src="../../assets/img/icons/brands/firefox.png" alt="Firefox" height="28" class="me-3 rounded" /> -->
                                 <div class="d-flex w-100 align-items-center gap-2">
                                     <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
                                         <div>
-                                            <h6 class="mb-0">Mozilla Firefox</h6>
+                                            <h6 class="mb-0">Test 3</h6>
                                         </div>
                                         <div class="user-progress d-flex align-items-center gap-2">
                                             <h6 class="mb-0">35.5%</h6>
@@ -169,11 +172,12 @@
                                 </div>
                             </li>
                             <li class="d-flex mb-4 pb-1 align-items-center">
-                                <img src="../../assets/img/icons/brands/opera.png" alt="Opera" height="28" class="me-3 rounded" />
+                                <i class="menu-icon tf-icons ti ti-users"></i>
+                                <!-- <img src="../../assets/img/icons/brands/opera.png" alt="Opera" height="28" class="me-3 rounded" /> -->
                                 <div class="d-flex w-100 align-items-center gap-2">
                                     <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
                                         <div>
-                                            <h6 class="mb-0">Opera Mini</h6>
+                                            <h6 class="mb-0">Test 4</h6>
                                         </div>
 
                                         <div class="user-progress d-flex align-items-center gap-2">
@@ -184,11 +188,12 @@
                                 </div>
                             </li>
                             <li class="d-flex mb-4 pb-1 align-items-center">
-                                <img src="../../assets/img/icons/brands/edge.png" alt="Edge" height="28" class="me-3 rounded" />
+                                <i class="menu-icon tf-icons ti ti-users"></i>
+                                <!-- <img src="../../assets/img/icons/brands/edge.png" alt="Edge" height="28" class="me-3 rounded" /> -->
                                 <div class="d-flex w-100 align-items-center gap-2">
                                     <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
                                         <div>
-                                            <h6 class="mb-0">Internet Explorer</h6>
+                                            <h6 class="mb-0">Test 5</h6>
                                         </div>
                                         <div class="user-progress d-flex align-items-center gap-2">
                                             <h6 class="mb-0">62.2%</h6>
@@ -198,11 +203,12 @@
                                 </div>
                             </li>
                             <li class="d-flex align-items-center">
-                                <img src="../../assets/img/icons/brands/brave.png" alt="Brave" height="28" class="me-3 rounded" />
+                                <i class="menu-icon tf-icons ti ti-users"></i>
+                                <!-- <img src="../../assets/img/icons/brands/brave.png" alt="Brave" height="28" class="me-3 rounded" /> -->
                                 <div class="d-flex w-100 align-items-center gap-2">
                                     <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
                                         <div>
-                                            <h6 class="mb-0">Brave</h6>
+                                            <h6 class="mb-0">Test 6</h6>
                                         </div>
                                         <div class="user-progress d-flex align-items-center gap-2">
                                             <h6 class="mb-0">46.3%</h6>
@@ -221,7 +227,7 @@
                 <div class="card h-100">
                     <div class="card-header d-flex justify-content-between">
                         <div class="card-title mb-0">
-                            <h5 class="mb-0">Active Project</h5>
+                            <h5 class="mb-0">Society Collection</h5>
                             <small class="text-muted">Average 72% Completed</small>
                         </div>
                         <div class="dropdown">
@@ -239,10 +245,11 @@
                         <ul class="p-0 m-0">
                             <li class="mb-3 pb-1 d-flex">
                                 <div class="d-flex w-50 align-items-center me-3">
-                                    <img src="../../assets/img/icons/brands/laravel-logo.png" alt="laravel-logo" class="me-3" width="35" />
+                                    <i class="menu-icon tf-icons ti ti-building"></i>
+                                    <!-- <img src="../../assets/img/icons/brands/laravel-logo.png" alt="laravel-logo" class="me-3" width="35" /> -->
                                     <div>
-                                        <h6 class="mb-0">Laravel</h6>
-                                        <small class="text-muted">eCommerce</small>
+                                        <h6 class="mb-0">Soceity 1</h6>
+                                        <!-- <small class="text-muted">eCommerce</small> -->
                                     </div>
                                 </div>
                                 <div class="d-flex flex-grow-1 align-items-center">
@@ -254,10 +261,11 @@
                             </li>
                             <li class="mb-3 pb-1 d-flex">
                                 <div class="d-flex w-50 align-items-center me-3">
-                                    <img src="../../assets/img/icons/brands/figma-logo.png" alt="figma-logo" class="me-3" width="35" />
+                                    <i class="menu-icon tf-icons ti ti-building"></i>
+                                    <!-- <img src="../../assets/img/icons/brands/figma-logo.png" alt="figma-logo" class="me-3" width="35" /> -->
                                     <div>
-                                        <h6 class="mb-0">Figma</h6>
-                                        <small class="text-muted">App UI Kit</small>
+                                        <h6 class="mb-0">Society 2</h6>
+                                        <!-- <small class="text-muted">App UI Kit</small> -->
                                     </div>
                                 </div>
                                 <div class="d-flex flex-grow-1 align-items-center">
@@ -269,10 +277,11 @@
                             </li>
                             <li class="mb-3 pb-1 d-flex">
                                 <div class="d-flex w-50 align-items-center me-3">
-                                    <img src="../../assets/img/icons/brands/vue-logo.png" alt="vue-logo" class="me-3" width="35" />
+                                    <i class="menu-icon tf-icons ti ti-building"></i>
+                                    <!-- <img src="../../assets/img/icons/brands/vue-logo.png" alt="vue-logo" class="me-3" width="35" /> -->
                                     <div>
-                                        <h6 class="mb-0">VueJs</h6>
-                                        <small class="text-muted">Calendar App</small>
+                                        <h6 class="mb-0">Society 3</h6>
+                                        <!-- <small class="text-muted">Calendar App</small> -->
                                     </div>
                                 </div>
                                 <div class="d-flex flex-grow-1 align-items-center">
@@ -284,10 +293,11 @@
                             </li>
                             <li class="mb-3 pb-1 d-flex">
                                 <div class="d-flex w-50 align-items-center me-3">
-                                    <img src="../../assets/img/icons/brands/react-logo.png" alt="react-logo" class="me-3" width="35" />
+                                    <i class="menu-icon tf-icons ti ti-building"></i>
+                                    <!-- <img src="../../assets/img/icons/brands/react-logo.png" alt="react-logo" class="me-3" width="35" /> -->
                                     <div>
-                                        <h6 class="mb-0">React</h6>
-                                        <small class="text-muted">Dashboard</small>
+                                        <h6 class="mb-0">Society 4</h6>
+                                        <!-- <small class="text-muted">Dashboard</small> -->
                                     </div>
                                 </div>
                                 <div class="d-flex flex-grow-1 align-items-center">
@@ -299,10 +309,12 @@
                             </li>
                             <li class="mb-3 pb-1 d-flex">
                                 <div class="d-flex w-50 align-items-center me-3">
-                                    <img src="../../assets/img/icons/brands/bootstrap-logo.png" alt="bootstrap-logo" class="me-3" width="35" />
+                                    <i class="menu-icon tf-icons ti ti-building"></i>
+                                    <i class="menu-icon tf-icons ti ti-building"></i>
+                                    <!-- <img src="../../assets/img/icons/brands/bootstrap-logo.png" alt="bootstrap-logo" class="me-3" width="35" /> -->
                                     <div>
-                                        <h6 class="mb-0">Bootstrap</h6>
-                                        <small class="text-muted">Website</small>
+                                        <h6 class="mb-0">Society 5</h6>
+                                        <!-- <small class="text-muted">Website</small> -->
                                     </div>
                                 </div>
                                 <div class="d-flex flex-grow-1 align-items-center">
@@ -314,10 +326,11 @@
                             </li>
                             <li class="d-flex">
                                 <div class="d-flex w-50 align-items-center me-3">
-                                    <img src="../../assets/img/icons/brands/sketch-logo.png" alt="sketch-logo" class="me-3" width="35" />
+                                    <i class="menu-icon tf-icons ti ti-building"></i>
+                                    <!-- <img src="../../assets/img/icons/brands/sketch-logo.png" alt="sketch-logo" class="me-3" width="35" /> -->
                                     <div>
-                                        <h6 class="mb-0">Sketch</h6>
-                                        <small class="text-muted">Website Design</small>
+                                        <h6 class="mb-0">Society 6</h6>
+                                        <!-- <small class="text-muted">Website Design</small> -->
                                     </div>
                                 </div>
                                 <div class="d-flex flex-grow-1 align-items-center">
