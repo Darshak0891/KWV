@@ -24,7 +24,8 @@
 
 <body>
     <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">House /</span> Edit House</h4>
+        <h4 class="fw-bold py-3 mb-4"><a href="{{ route('houses.index') }}" class="text-muted fw-light">House</a> / Edit
+            House</h4>
         <div class="card-body">
             @if ($errors->any())
             <div class="alert alert-danger">
@@ -65,14 +66,6 @@
                         <div class="mb-3">
                             <label for="rent">Rent</label>
                             <input type="text" id="rent" class="form-control" name="rent" value="{{ $house->rent }}" required="" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="credit">Credit</label>
-                            <input type="text" id="credit" class="form-control" name="credit" value="{{ $house->credit }}" required="" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="debit">Debit</label>
-                            <input type="text" id="debit" class="form-control" name="debit" value="{{ $house->debit }}" required="" />
                         </div><br>
                         <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Update House</button>
                     </form>

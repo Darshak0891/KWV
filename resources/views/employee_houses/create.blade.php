@@ -11,7 +11,8 @@
 </div>
 @endif
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Employee & House /</span> Allocate Society</h4>
+    <h4 class="fw-bold py-3 mb-4"><a href="{{ route('employee_houses.index') }}" class="text-muted fw-light">Employee &
+            House</a> / Allocate Society</h4>
     <div class="card">
         <div class="card-body">
             <form method="post" action="{{ route('employee_houses.store') }}" id="regForm" autocomplete="off">

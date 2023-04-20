@@ -1,7 +1,8 @@
 @extends('layouts.app')
 @section('content')
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Employee & House /</span> Society List</h4>
+    <h4 class="fw-bold py-3 mb-4"><a href="{{ route('employee_houses.index') }}" class="text-muted fw-light">Employee &
+            House</a> / Society List</h4>
     <!-- Users List Table -->
     <div class="card">
         <div class="row" align="right">

@@ -8,7 +8,7 @@ use App\Http\Controllers\HouseController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\EmployeeHouseController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,6 +37,7 @@ Route::group(['prefix' => 'employees', 'middleware' => ['is_admin']],  function 
     Route::get('/{employee}/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
     Route::post('/{employee}/update', [EmployeeController::class, 'update'])->name('employees.update');
     Route::delete('/{employee}/delete', [EmployeeController::class, 'delete'])->name('employees.delete');
+    Route::get('/back', [Controller::class, 'back'])->name('employees.back');
 });
 
 Route::group(['prefix' => 'societies', 'middleware' => ['is_admin']],  function () {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use \Exception;
 
 class HomeController extends Controller
 {
@@ -13,7 +14,11 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        try {
+            $this->middleware('auth');
+        } catch (Exception $e) {
+            return redirect()->back();
+        }
     }
 
     /**
@@ -23,17 +28,28 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        try {
+            return view('home');
+        } catch (Exception $e) {
+            return redirect()->back();
+        }
     }
 
     public function adminDashboard()
     {
-        return view('admin_dashboard');
+        try {
+            return view('admin_dashboard');
+        } catch (Exception $e) {
+            return redirect()->back();
+        }
     }
 
     public function userDashboard()
     {
-        return view('user_dashboard');
+        try {
+            return view('user_dashboard');
+        } catch (Exception $e) {
+            return redirect()->back();
+        }
     }
-    
 }

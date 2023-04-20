@@ -2,7 +2,15 @@
 @section('content')
 
 <div class="container-xxl flex-grow-1 container-p-y">
-    <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Employee /</span> Add Employee</h4>
+    <h4 class="fw-bold py-3 mb-4"><a href="{{ route('employees.index') }}" class="text-muted fw-light">Employee</a>
+        / Add Employee</h4>
+
+    <!-- <div class="row" align="right">
+        <div class="col-12">
+            <a class="btn btn-primary me-sm-3 me-1 data-submit float-right"
+                href="{{ route('employees.index') }}">Back</a>
+        </div>
+    </div><br> -->
     <div class="card-body">
         @if ($errors->any())
         <div class="alert alert-danger">

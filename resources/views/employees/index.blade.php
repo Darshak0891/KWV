@@ -101,7 +101,7 @@
                     </form>
                 </div>
             </div>
-
+            <br>
             <div class="row" align="right">
                 <div class="col-12">
                     <a class="btn btn-primary me-sm-3 me-1 data-submit float-right" href="{{ route('employees.create') }}">Add Employee</a>
