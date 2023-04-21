@@ -9,5 +9,5 @@ class HouseRent extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['house_id', 'rent', 'baki', 'jama', 'date'];
+    protected $fillable = ['house_id', 'rent', 'baki', 'jama', 'date', 'dc', 'nod'];
 }

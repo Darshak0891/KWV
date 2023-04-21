@@ -14,8 +14,8 @@
                                 <td>House No.</td>
                                 <td>Mobile No.</td>
                                 <td>Box No.</td>
-                                <td>Rent</td>
                                 <td>Baki</td>
+                                <td>Rent</td>
                                 <td>Jama</td>
                             </tr>
                         <tbody>
@@ -24,8 +24,8 @@
                                 <td>{{ $data->house_no }}</td>
                                 <td>{{ $data->mobile_no }}</td>
                                 <td>{{ $data->box_no }}</td>
-                                <td>{{ $data->rent }}</td>
                                 <td>{{ $data->baki }}</td>
+                                <td>{{ $data->rent }}</td>
                                 <td>{{ $data->jama }}</td>
                             </tr>
                             @endforeach

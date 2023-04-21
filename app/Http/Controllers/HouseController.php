@@ -84,9 +84,9 @@ class HouseController extends Controller
     public function show(House $house)
     {
         try {
-            $house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
+            /* $house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
                 ->select('house_rents.id', 'house_rents.rent')
-                ->get();
+                ->get(); */
             return view('houses.show', compact('house'));
         } catch (Exception $e) {
             return redirect()->back();
@@ -96,8 +96,13 @@ class HouseController extends Controller
     public function edit($id)
     {
         try {
-            $house = House::findOrFail($id);
+            $house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
+                ->select('houses.id', 'houses.society_id', 'houses.house_no', 'houses.name', 'houses.mobile_no', 'houses.box_no', 'house_rents.rent', 'house_rents.rent')
+                ->where('houses.id', $id)
+                ->first();
+            //dd($house);
             $society = Society::get();
+            //dd($society);
             return view('houses.edit', compact('house', 'society'));
         } catch (Exception $e) {
             return redirect()->back();

@@ -14,8 +14,8 @@
                             <td>House No.</td>
                             <td>Mobile No.</td>
                             <td>Box No.</td>
-                            <td>Rent</td>
                             <td>Baki</td>
+                            <td>Rent</td>
                             <td>Jama</td>
                             <td>Action</td>
                         </tr>
@@ -27,8 +27,8 @@
                             <td>{{ $data->house_no }}</td>
                             <td>{{ $data->mobile_no }}</td>
                             <td>{{ $data->box_no }}</td>
-                            <td>{{ $data->rent }}</td>
                             <td>{{ $data->baki }}</td>
+                            <td>{{ $data->rent }}</td>
                             <td>{{ $data->jama }}</td>
                             @if($data->jama >= $data->rent)
                             <td><button class="btn btn-success" disabled>Completed</button></td>
