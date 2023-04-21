@@ -77,19 +77,20 @@ Route::group(['prefix' => 'employee_houses', 'middleware' => ['is_admin']], func
     Route::delete('/{id}/delete', [EmployeeHouseController::class, 'delete'])->name('employee_houses.delete');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+    Route::get('/allocatesocieties', [UserController::class, 'index'])->name('allocatesocieties.index');
+    Route::get('/{id}/show', [UserController::class, 'show'])->name('allocatesocieties.show');
+    Route::get('/{id}/actions', [UserController::class, 'action'])->name('allocatesocieties.actions');
+    Route::post('/actionpost', [UserController::class, 'actionpost'])->name('allocatesocieties.actionpost');
+
+
+    Route::get('/profile', [UserController::class, 'profile'])->name('profiles.index');
+    Route::post('/profile-update', [UserController::class, 'profileUpdate'])->name('profiles.update');
+
+    Route::get('/change-password', [UserController::class, 'changePassword'])->name('profiles.change-password');
+    Route::post('/change-password', [UserController::class, 'updatePassword'])->name('profiles.update-password');
+});
 
 Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/allocatesocieties', [UserController::class, 'index'])->name('allocatesocieties.index');
-Route::get('/{id}/show', [UserController::class, 'show'])->name('allocatesocieties.show');
-Route::get('/{id}/actions', [UserController::class, 'action'])->name('allocatesocieties.actions');
-Route::post('/actionpost', [UserController::class, 'actionpost'])->name('allocatesocieties.actionpost');
-
-
-Route::get('/profile', [UserController::class, 'profile'])->name('profiles.index');
-Route::post('/profile-update', [UserController::class, 'profileUpdate'])->name('profiles.update');
-
-Route::get('/change-password', [UserController::class, 'changePassword'])->name('profiles.change-password');
-Route::post('/change-password', [UserController::class, 'updatePassword'])->name('profiles.update-password');

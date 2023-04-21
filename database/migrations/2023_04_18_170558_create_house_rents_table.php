@@ -21,6 +21,8 @@ class CreateHouseRentsTable extends Migration
             $table->string('jama')->default(0);
             $table->string('date')->nullable();
             $table->text('remark')->nullable();
+            $table->boolean('dc')->default(0);
+            $table->boolean('nod')->default(0);
             $table->timestamps();
         });
     }

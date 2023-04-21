@@ -97,7 +97,7 @@ class HouseController extends Controller
     {
         try {
             $house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
-                ->select('houses.id', 'houses.society_id', 'houses.house_no', 'houses.name', 'houses.mobile_no', 'houses.box_no', 'house_rents.rent', 'house_rents.rent')
+                ->select('houses.id', 'houses.society_id', 'houses.house_no', 'houses.name', 'houses.mobile_no', 'houses.box_no', 'house_rents.rent', 'house_rents.dc', 'house_rents.nod')
                 ->where('houses.id', $id)
                 ->first();
             //dd($house);
@@ -112,9 +112,10 @@ class HouseController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            // dd($request);
             $user = auth()->user();
 
-            $updateData = $request->validate([
+            $request->validate([
                 'society_id' => 'required',
                 'house_no' => 'required',
                 'mobile_no' => 'required|numeric',
@@ -122,13 +123,17 @@ class HouseController extends Controller
                 'rent' => 'required',
             ]);
             $old_data = House::get()->first();
-            House::whereId($id)->update($updateData);
+            House::whereId($id)->update(['society_id' => $request['society_id'], 'house_no' => $request['house_no'], 'mobile_no' => $request['mobile_no'], 'box_no' => $request['box_no']]);
+            $from = Carbon::now()->startOfMonth();
+            $to = Carbon::now()->endOfMonth()->addDay(9);
+            HouseRent::where('house_id', $id)->whereBetween('date', [$from, $to])->update(['rent' => $request['rent'], 'baki' => $request['rent'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
             Admin_log::create([
                 'user_id' => $user->id, 'type_id' => 3, 'action_type_id' => 2, 'request_id' => $id,
-                'message' => 'House Updated.', 'edit_old_data' => json_encode($old_data), 'edit_new_data' => json_encode($updateData)
+                'message' => 'House Updated.', 'edit_old_data' => json_encode($old_data), 'edit_new_data' => json_encode($request)
             ]);
             return redirect()->route('houses.index')->with('success', 'House has been updated.');
         } catch (Exception $e) {
+            // dd($e);
             return redirect()->back();
         }
     }

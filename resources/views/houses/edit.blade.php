@@ -73,6 +73,20 @@
                             <label for="rent">Rent</label>
                             <input type="text" id="rent" class="form-control" name="rent" value="{{ $house->rent }}"
                                 required="" />
+                        </div>
+                        <div class="form-group" id="result">
+                            DC:
+                            <input type="radio" name="dc" value="1" {{ ($house->dc=="1") ? "checked" : "" }} required=""
+                                class="form-check-input">Yes
+                            <input type="radio" name="dc" value="0" {{ ($house->dc=="0") ? "checked" : "" }} required=""
+                                class="form-check-input">No
+                        </div><br>
+                        <div class="form-group" id="result">
+                            NOD:
+                            <input type="radio" name="nod" value="1" {{ ($house->nod=="1") ? "checked" : "" }}
+                                required="" class="form-check-input">Yes
+                            <input type="radio" name="nod" value="0" {{ ($house->nod=="0") ? "checked" : "" }}
+                                required="" class="form-check-input">No
                         </div><br>
                         <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">Update House</button>
                     </form>

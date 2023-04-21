@@ -119,7 +119,7 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Page -->
-                    @if(auth()->user()->is_admin == 1)
+                    @if(auth()->user() && auth()->user()->is_admin == 1)
                     <li class="menu-item {{ Request::routeIs(['admin.dashboard']) ? 'active' : '' }}">
                         <a href="{{ url('admin/dashboard') }}" class="menu-link">
                             <i class="menu-icon tf-icons ti ti-smart-home"></i>
@@ -232,7 +232,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">{{ auth()->user()->name }}</span>
+                                                    <span
+                                                        class="fw-semibold d-block">{{ auth()->user() && auth()->user()->name }}</span>
                                                     <!-- <small class="text-muted">Admin</small> -->
                                                 </div>
                                             </div>

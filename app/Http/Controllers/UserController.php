@@ -45,10 +45,12 @@ class UserController extends Controller
                     'house_rents.baki',
                     'house_rents.jama',
                     'house_rents.date',
+                    'house_rents.dc',
+                    'house_rents.nod',
                     'house_rents.id as hId',
                 )
                 ->whereBetween('house_rents.date', [$from, $to])
-                ->where('society_id', $id)->get();
+                ->where('society_id', $id)->where('dc', 0)->where('nod', 0)->get();
             //dd($show_house);
             return view('allocatesocieties.show', compact('show_house'));
         } catch (Exception $e) {
