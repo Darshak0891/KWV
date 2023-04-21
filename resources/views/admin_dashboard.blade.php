@@ -28,7 +28,7 @@
                 <div class="card h-100">
                     <div class="card-header">
                         <div class="d-flex justify-content-between mb-3">
-                            <h5 class="card-title mb-0">Statistics</h5>
+                            <h5 class="card-title mb-0">REPORT</h5>
                             <!-- <small class="text-muted">Updated 1 month ago</small> -->
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                                         <i class="menu-icon tf-icons ti ti-users"></i>
                                     </div>
                                     <div class="card-info">
-                                        <h5 class="mb-0">6</h5>
+                                        <h5 class="mb-0">{{$totalEmp}}</h5>
                                         <small>Employees</small>
                                     </div>
                                 </div>
@@ -51,7 +51,7 @@
                                         <i class="menu-icon tf-icons ti ti-building"></i>
                                     </div>
                                     <div class="card-info">
-                                        <h5 class="mb-0">100</h5>
+                                        <h5 class="mb-0">{{$totalSoc}}</h5>
                                         <small>Societies</small>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
                                         <i class="menu-icon tf-icons ti ti-home"></i>
                                     </div>
                                     <div class="card-info">
-                                        <h5 class="mb-0">3000</h5>
+                                        <h5 class="mb-0">{{$totalHouse}}</h5>
                                         <small>Houses</small>
                                     </div>
                                 </div>
@@ -309,7 +309,6 @@
                             </li>
                             <li class="mb-3 pb-1 d-flex">
                                 <div class="d-flex w-50 align-items-center me-3">
-                                    <i class="menu-icon tf-icons ti ti-building"></i>
                                     <i class="menu-icon tf-icons ti ti-building"></i>
                                     <!-- <img src="../../assets/img/icons/brands/bootstrap-logo.png" alt="bootstrap-logo" class="me-3" width="35" /> -->
                                     <div>

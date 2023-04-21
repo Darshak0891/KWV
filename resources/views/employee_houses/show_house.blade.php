@@ -17,6 +17,7 @@
                                 <td>Baki</td>
                                 <td>Rent</td>
                                 <td>Jama</td>
+                                <td>Status</td>
                             </tr>
                         <tbody>
                             @foreach($show_house as $data)
@@ -27,6 +28,11 @@
                                 <td>{{ $data->baki }}</td>
                                 <td>{{ $data->rent }}</td>
                                 <td>{{ $data->jama }}</td>
+                                @if($data->jama >= $data->rent)
+                                <td><button class="btn btn-success" disabled>Completed</button></td>
+                                @else
+                                <td> <button class="btn btn-primary" disabled>Pending</button> </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>

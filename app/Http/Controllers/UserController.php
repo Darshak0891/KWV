@@ -22,7 +22,6 @@ class UserController extends Controller
 
             $society = Society::whereIn('id', $society_id)->get();
 
-            //dd($society);
             return view('allocatesocieties.index', compact('society'));
         } catch (Exception $e) {
             return redirect()->back();
