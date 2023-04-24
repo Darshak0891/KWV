@@ -23,14 +23,6 @@ class EmployeeController extends Controller
                 }
             })->where(['is_admin' => 0])->paginate(5);
 
-            /* $employee = User::where('name', 'LIKE', '%'.$request->search.'%')->orderBy('id', 'ASC')->where(['is_admin' => 0])->paginate(3);
-        return view('employees.index',compact('employee')); */
-
-            /* $employee = User::latest();
-        if (request()->has('search')) {
-            $employee->where('name', 'Like', '%' . request()->input('search') . '%');
-        }
-        $employee = $employee->paginate(5); */
             return view('employees.index', compact('employee'))
                 ->with('i', (request()->input('page', 1) - 1) * 5);
         } catch (Exception $e) {

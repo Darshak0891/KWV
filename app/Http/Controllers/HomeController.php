@@ -48,9 +48,30 @@ class HomeController extends Controller
             $totalEmp = User::count();
             $totalSoc = Society::count();
             $totalHouse = House::count();
-            return view('admin_dashboard', compact('totalEmp', 'totalSoc', 'totalHouse'));
+
+            /*  $user = User::where('is_admin', 0)->get();
+            // dd($user); */
+            $userSociety = EmployeeHouse::join('users', 'users.id', '=', 'employee_houses.user_id')
+                //->join('societies', 'societies.id', '=', 'employee_houses.society_id')
+                ->select('users.name')->groupBy('users.name')
+                //->where('employee_houses.user_id', 'users.id')->pluck('society_id')
+                ->get();
+            //dd($userSociety);
+            $data = EmployeeHouse::pluck('society_id');
+            $ttlSoc = $data->count();
+            // dd($data);
+
+            $hData = House::select('id')->whereIn('society_id', $data)->get();
+            //join('societies', 'societies.id', '=', 'houses.society_id')
+            //dd($hData);
+            $ttlHouse = $hData->count();
+
+            // $array = array_merge($userSociety, $ttlSoc, $ttlHouse);
+            // dd($ttlHouse);
+            //->get();
+            return view('admin_dashboard', compact('totalEmp', 'totalSoc', 'totalHouse', 'userSociety', 'ttlSoc', 'ttlHouse'));
         } catch (Exception $e) {
-            dd($e);
+            //dd($e);
             return redirect()->back();
         }
     }

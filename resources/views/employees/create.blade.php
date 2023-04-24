@@ -95,4 +95,6 @@
                 })
             }
         </script>
-        @endsection
+    </div>
+</div>
+@endsection

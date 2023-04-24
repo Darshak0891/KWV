@@ -34,7 +34,8 @@
                             <td><button class="btn btn-success" disabled>Completed</button></td>
                             @else
 
-                            <td> <a class="btn btn-primary" href="{{ route('allocatesocieties.actions', $data->hId) }}">Action</a> </td>
+                            <td> <a class="btn btn-primary"
+                                    href="{{ route('allocatesocieties.actions', $data->hId) }}">Action</a> </td>
                             @endif
 
                         </tr>
