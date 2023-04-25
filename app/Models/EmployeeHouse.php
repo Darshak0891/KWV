@@ -9,6 +9,5 @@ class EmployeeHouse extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'society_id', 'house_id'];
+    protected $fillable = ['user_id', 'society_id'];
 }
-

@@ -49,29 +49,25 @@ class HomeController extends Controller
             $totalSoc = Society::count();
             $totalHouse = House::count();
 
-            /*  $user = User::where('is_admin', 0)->get();
-            // dd($user); */
             $userSociety = EmployeeHouse::join('users', 'users.id', '=', 'employee_houses.user_id')
-                //->join('societies', 'societies.id', '=', 'employee_houses.society_id')
-                ->select('users.name')->groupBy('users.name')
-                //->where('employee_houses.user_id', 'users.id')->pluck('society_id')
+                // ->join('societies', 'societies.id', '=', 'employee_houses.society_id')
+                ->join('houses', 'houses.society_id', '=', 'employee_houses.society_id')
+                ->join('house_rents', 'house_rents.house_id', '=', 'houses.id')
+                ->selectRaw('users.name, count(houses.id) as totalHouses, sum(house_rents.rent) as totalRents, sum(house_rents.baki) as totalBaki, sum(house_rents.jama) as totalJama')
+                ->groupBy('users.id')
                 ->get();
-            //dd($userSociety);
-            $data = EmployeeHouse::pluck('society_id');
-            $ttlSoc = $data->count();
-            // dd($data);
 
-            $hData = House::select('id')->whereIn('society_id', $data)->get();
-            //join('societies', 'societies.id', '=', 'houses.society_id')
-            //dd($hData);
-            $ttlHouse = $hData->count();
+            $userSocietyData = EmployeeHouse::join('users', 'users.id', '=', 'employee_houses.user_id')
 
-            // $array = array_merge($userSociety, $ttlSoc, $ttlHouse);
-            // dd($ttlHouse);
-            //->get();
-            return view('admin_dashboard', compact('totalEmp', 'totalSoc', 'totalHouse', 'userSociety', 'ttlSoc', 'ttlHouse'));
+                ->selectRaw('users.name, count(employee_houses.society_id) as totalSociety')
+                ->groupBy('users.id')
+                ->get();
+            $todayCollection = HouseRent::whereRaw('updated_at >= DATE(NOW()) - INTERVAL 1 DAY')->sum('jama');
+
+            // dd($userSociety);
+            return view('admin_dashboard', compact('totalEmp', 'totalSoc', 'totalHouse', 'userSociety', 'userSocietyData', 'todayCollection'));
         } catch (Exception $e) {
-            //dd($e);
+            dd($e);
             return redirect()->back();
         }
     }
