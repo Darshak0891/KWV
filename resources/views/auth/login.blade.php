@@ -50,8 +50,6 @@
 
 <body>
 
-  <!-- <div class="authentication-wrapper authentication-cover authentication-bg">
-      <div class="authentication-inner row"> -->
   <div align="center">
 
     <div class="d-flex col-12 col-lg-5 align-items-center p-sm-5 p-4">
@@ -68,18 +66,18 @@
         <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
           @csrf
           <div class="mb-3">
-            <label for="email" class="form-label">Email or Username</label>
-            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Enter your email or username" required autocomplete="email" autofocus />
-            @error('email')
+            <label for="phone" class="form-label">Phone Number or Username</label>
+            <input id="phone" type="text" class="form-control " name="phone" value="{{ old('phone') }}" placeholder="Enter your phone number or username" required autofocus />
+            <!-- @if ($errors->has('phone'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('phone') }}</strong>
+                        </span>
+                        @endif -->
+            @error('phone')
             <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
             </span>
             @enderror
-            <!-- @error('email')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror -->
           </div>
           <div class="mb-3 form-password-toggle">
             <div class="d-flex justify-content-between">
@@ -93,11 +91,6 @@
                 <strong>{{ $message }}</strong>
               </span>
               @enderror
-              <!-- @error('password')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror -->
 
               <span class="input-group-text cursor-pointer"><i class="ti ti-eye-off"></i></span>
             </div>

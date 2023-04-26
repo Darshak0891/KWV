@@ -18,7 +18,7 @@
                     <input type="search" name="search" class="form-control" placeholder="Search..." />
                 </form>
             </div>
-        </div>
+        </div><br>
 
         <div class="row" align="right">
             <div class="col-12">
