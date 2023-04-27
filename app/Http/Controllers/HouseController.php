@@ -124,7 +124,7 @@ class HouseController extends Controller
                 'rent' => 'required',
                 'jama' => 'required'
             ]);
-            $old_data = House::get()->first();
+            $old_data = House::where('id', $id)->first();
             House::whereId($id)->update(['society_id' => $request['society_id'], 'house_no' => $request['house_no'], 'mobile_no' => $request['mobile_no'], 'box_no' => $request['box_no']]);
             $from = Carbon::now()->startOfMonth();
             $to = Carbon::now()->endOfMonth()->addDay(9);
