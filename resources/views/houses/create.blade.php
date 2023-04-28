@@ -68,7 +68,6 @@
                         },
                         box_no: {
                             required: true,
-                            number: true
                         },
                         rent: {
                             required: true,
@@ -86,11 +85,10 @@
                         mobile_no: {
                             required: "Mobile Number is required",
                             minlength: "Mobile Number is atleast 10 digits required",
-                            maxlength: "Mobile Number is atleast 10 digits required"
+                            maxlength: "Mobile Number is more than 10 digits required"
                         },
                         box_no: {
                             required: "Box Number is required",
-                            number: "Please enter a valid box number"
                         },
                         rent: {
                             required: "Rent is required",

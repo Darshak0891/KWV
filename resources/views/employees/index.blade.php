@@ -23,7 +23,8 @@
         <br>
         <div class="row" align="right">
             <div class="col-12">
-                <a class="btn btn-primary me-sm-3 me-1 data-submit float-right" href="{{ route('employees.create') }}">Add Employee</a>
+                <a class="btn btn-primary me-sm-3 me-1 data-submit float-right"
+                    href="{{ route('employees.create') }}">Add Employee</a>
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <caption class="ms-4">
@@ -35,8 +36,7 @@
                                 <th>Employee Name</th>
                                 <th>Email ID</th>
                                 <th>Phone No.</th>
-                                <th>Is Active</th>
-                                <th>Action</th>
+                                <th class="text-center">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +46,7 @@
                                 <td>{{$employees->name}}</td>
                                 <td>{{$employees->email}}</td>
                                 <td>{{$employees->phone}}</td>
-                                <td>
+                                <!-- <td>
                                     <label class="switch switch-primary">
                                         <input type="checkbox" class="switch-input" {{$employees->is_active ? 'checked' : '' }} />
                                         <span class="switch-toggle-slider">
@@ -58,7 +58,7 @@
                                             </span>
                                         </span>
                                     </label>
-                                </td>
+                                </td> -->
                                 <!-- @if($employees->is_active == 0)         
                         <td>In Active</td>         
                         @else
@@ -66,11 +66,15 @@
                         @endif -->
                                 <!-- <td>{{$employees->is_active}}</td> -->
                                 <td class="text-center">
-                                    <a href="{{ route('employees.edit', $employees->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                    <form action="{{ route('employees.delete', $employees->id)}}" method="post" style="display: inline-block">
+                                    <a href="{{ route('employees.edit', $employees->id)}}"
+                                        class="btn btn-primary btn-sm">Edit</a>
+                                    <form action="{{ route('employees.delete', $employees->id)}}" method="post"
+                                        style="display: inline-block">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this employee?')" type="submit">Delete</button>
+                                        <button class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Are you sure you want to delete this employee?')"
+                                            type="submit">Delete</button>
                                     </form>
                                 </td>
                             </tr>

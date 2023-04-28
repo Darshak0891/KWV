@@ -28,9 +28,30 @@ class UserController extends Controller
         }
     }
 
+    /* public function searchHouse(Request $request)
+    {
+        try {
+
+            return 1;
+            $app = House::where(function ($query) use ($request) {
+                if ($request->search) {
+                    $query->where('house_no', 'LIKE', '%' . $request->search . '%');
+                }
+            })->paginate(10);
+
+            return view('allocatesocieties.show', compact('app'))
+                ->with('i', (request()->input('page', 1) - 1) * 5);
+        } catch (Exception $e) {
+            return redirect()->back();
+        }
+    } */
+
     public function show(Request $request, $id)
     {
         try {
+            /* if (!empty($request) && isset($request->search)) {
+                return ($request);
+            } */
             $from = Carbon::now()->startOfMonth();
             $to = Carbon::now()->endOfMonth()->addDay(9);
             $show_house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
@@ -48,15 +69,23 @@ class UserController extends Controller
                     'house_rents.dc',
                     'house_rents.nod',
                     'house_rents.id as hId',
-                )
+                )->where(function ($query) use ($request) {
+                    if ($request->search) {
+                        $query->where('house_no', 'LIKE', '%' . $request->search . '%')
+                            ->orWhere('name', 'LIKE', '%' . $request->search . '%');
+                    }
+                })
                 ->whereBetween('house_rents.date', [$from, $to])
                 ->where('society_id', $id)->where('dc', 0)->where('nod', 0)->get();
+            // dd($id);
             //dd($show_house);
-            return view('allocatesocieties.show', compact('show_house'));
+            return view('allocatesocieties.show', compact('show_house', 'id'));
         } catch (Exception $e) {
             return redirect()->back();
         }
     }
+
+
 
     public function action($id)
     {

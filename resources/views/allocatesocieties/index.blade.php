@@ -15,8 +15,8 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <td>Society Name</td>
-                            <td>Action</td>
+                            <th>Society Name</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>

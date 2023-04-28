@@ -6,8 +6,10 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\House;
 use App\Models\Admin_log;
+use App\Models\HouseRent;
 use Illuminate\Support\Facades\Hash;
 use Exception;
+use \Carbon\Carbon;
 
 class EmployeeController extends Controller
 {
@@ -171,6 +173,7 @@ class EmployeeController extends Controller
             // return(json_decode($show->edit_old_data)->name);
             $old_data = json_decode($show->edit_old_data);
             $new_data = json_decode($show->edit_new_data);
+
             return view('adminlogs.show', compact('show', 'old_data', 'new_data'));
         } catch (Exception $e) {
             return redirect()->back();

@@ -87,6 +87,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/{id}/actions', [UserController::class, 'action'])->name('allocatesocieties.actions');
     Route::post('/actionpost', [UserController::class, 'actionpost'])->name('allocatesocieties.actionpost');
 
+    // Route::get('/searchHouse', [UserController::class, 'searchHouse'])->name('allocatesocieties.searchHouse');
+
 
     Route::get('/profile', [UserController::class, 'profile'])->name('profiles.index');
     Route::post('/profile-update', [UserController::class, 'profileUpdate'])->name('profiles.update');

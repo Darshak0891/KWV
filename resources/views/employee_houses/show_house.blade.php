@@ -6,21 +6,29 @@
     <!-- Users List Table -->
     <div class="card">
         <br>
+        <div class="input-group">
+            <div class="form-outline">
+                <form action="{{ route('employee_houses.show_house', $house) }}" role="search" method="GET">
+                    <input type="search" name="search" class="form-control" placeholder="Search..." />
+                </form>
+            </div>
+        </div>
+        <br>
         <div class="row" align="right">
             <div class="col-12">
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <thead>
                             <tr>
-                                <td>Id</td>
-                                <td>House No.</td>
-                                <td>Name</td>
-                                <td>Mobile No.</td>
-                                <td>Box No.</td>
-                                <td>Baki</td>
-                                <td>Rent</td>
-                                <td>Jama</td>
-                                <td>Status</td>
+                                <th>Id</th>
+                                <th>House No.</th>
+                                <th>Name</th>
+                                <th>Mobile No.</th>
+                                <th>Box No.</th>
+                                <th>Baki</th>
+                                <th>Rent</th>
+                                <th>Jama</th>
+                                <th>Status</th>
                             </tr>
                         <tbody>
                             @foreach($show_house as $key => $data)
@@ -38,7 +46,7 @@
                                         @method('POST')
 
                                         <input type="text" name="jama" value="{{ $data->jama }}" size="3" />
-                                        <input type="text" name="remark" value="{{ $data->remark }}" size="7" />
+                                        <input type="text" name="remark" value="{{ $data->remark }}" size="9" />
 
                                         <input type="hidden" name="actionid" value="{{ $data->hId }}">
                                         <button type="submit">Submit</button>
@@ -47,7 +55,7 @@
                                 @if($data->baki == 0)
                                 <td><button class="btn btn-success" disabled>Completed</button></td>
                                 @else
-                                <td> <button class="btn btn-primary" disabled>Pending</button> </td>
+                                <td> <button class="btn btn-warning" disabled>Pending</button> </td>
                                 @endif
                             </tr>
                             @endforeach

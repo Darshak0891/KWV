@@ -123,14 +123,21 @@ class HouseController extends Controller
                 'box_no' => 'required',
                 'rent' => 'required',
             ]);
+            // dd(json_encode($request->all()));
             $old_data = House::where('id', $id)->first();
-            House::whereId($id)->update(['society_id' => $request['society_id'], 'house_no' => $request['house_no'], 'mobile_no' => $request['mobile_no'], 'box_no' => $request['box_no']]);
             $from = Carbon::now()->startOfMonth();
             $to = Carbon::now()->endOfMonth()->addDay(9);
+            $houseRentData = HouseRent::where('id', $id)->whereBetween('date', [$from, $to])->select('house_rents.rent', 'house_rents.dc', 'house_rents.nod')->first();
+            $old_data['rent'] = $houseRentData->rent;
+            $old_data['dc'] = $houseRentData->dc;
+            $old_data['nod'] = $houseRentData->nod;
+
+            House::whereId($id)->update(['society_id' => $request['society_id'], 'house_no' => $request['house_no'], 'mobile_no' => $request['mobile_no'], 'box_no' => $request['box_no']]);
+
             HouseRent::where('house_id', $id)->whereBetween('date', [$from, $to])->update(['rent' => $request['rent'], 'baki' => $request['rent'] - $request['jama'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
             Admin_log::create([
                 'user_id' => $user->id, 'type_id' => 3, 'action_type_id' => 2, 'request_id' => $id,
-                'message' => 'House Updated.', 'edit_old_data' => json_encode($old_data), 'edit_new_data' => json_encode($request)
+                'message' => 'House Updated.', 'edit_old_data' => json_encode($old_data), 'edit_new_data' => json_encode($request->all())
             ]);
             return redirect()->route('houses.index')->with('success', 'House has been updated.');
         } catch (Exception $e) {

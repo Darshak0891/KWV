@@ -13,9 +13,9 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <td>Name</td>
-                                <td>Email</td>
-                                <td>Phone</td>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -30,9 +30,9 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <td>Name</td>
-                                <td>Email</td>
-                                <td>Phone</td>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Phone</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,7 +49,7 @@
                         <thead>
 
                             <tr>
-                                <td>Society Name</td>
+                                <th>Society Name</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,7 +62,7 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <td>Society Name</td>
+                                <th>Society Name</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,16 +76,34 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <td>House No.</td>
-                                <td>Mobile No.</td>
-                                <td>Box_no</td>
+                                <th>House No.</th>
+                                <th>Name</th>
+                                <th>Mobile No.</th>
+                                <th>Box_no</th>
+                                <th>Rent</th>
+                                <th>DC</th>
+                                <th>NOD</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>{{ $old_data->house_no }}</td>
+                                <td>{{ $old_data->name }}</td>
                                 <td>{{ $old_data->mobile_no }}</td>
                                 <td>{{ $old_data->box_no }}</td>
+                                <td>{{ $old_data->rent }}</td>
+
+                                @if($old_data->dc == 0)
+                                <td>Inactive</td>
+                                @else
+                                <td>Active</td>
+                                @endif
+
+                                @if($old_data->nod == 0)
+                                <td>Inactive</td>
+                                @else
+                                <td>Active</td>
+                                @endif
                             </tr>
                         </tbody>
                     </table><br>
@@ -93,16 +111,34 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <td>House No.</td>
-                                <td>Mobile No.</td>
-                                <td>Box_no</td>
+                                <th>House No.</th>
+                                <th>Name</th>
+                                <th>Mobile No.</th>
+                                <th>Box_no</th>
+                                <th>Rent</th>
+                                <th>DC</th>
+                                <th>NOD</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>{{ $new_data->house_no }}</td>
+                                <td>{{ $new_data->name }}</td>
                                 <td>{{ $new_data->mobile_no }}</td>
                                 <td>{{ $new_data->box_no }}</td>
+                                <td>{{ $new_data->rent }}</td>
+
+                                @if($old_data->dc == 0)
+                                <td>Inactive</td>
+                                @else
+                                <td>Active</td>
+                                @endif
+
+                                @if($old_data->nod == 0)
+                                <td>Inactive</td>
+                                @else
+                                <td>Active</td>
+                                @endif
                             </tr>
                         </tbody>
                     </table>
