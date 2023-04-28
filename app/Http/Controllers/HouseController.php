@@ -98,7 +98,7 @@ class HouseController extends Controller
     {
         try {
             $house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
-                ->select('houses.id', 'houses.society_id', 'houses.house_no', 'houses.name', 'houses.mobile_no', 'houses.box_no', 'house_rents.rent', 'house_rents.baki', 'house_rents.jama', 'house_rents.dc', 'house_rents.nod')
+                ->select('houses.id', 'houses.society_id', 'houses.house_no', 'houses.name', 'houses.mobile_no', 'houses.box_no', 'house_rents.rent', 'house_rents.dc', 'house_rents.nod')
                 ->where('houses.id', $id)
                 ->first();
             //dd($house);
@@ -122,13 +122,12 @@ class HouseController extends Controller
                 'mobile_no' => 'required',
                 'box_no' => 'required',
                 'rent' => 'required',
-                'jama' => 'required'
             ]);
             $old_data = House::where('id', $id)->first();
             House::whereId($id)->update(['society_id' => $request['society_id'], 'house_no' => $request['house_no'], 'mobile_no' => $request['mobile_no'], 'box_no' => $request['box_no']]);
             $from = Carbon::now()->startOfMonth();
             $to = Carbon::now()->endOfMonth()->addDay(9);
-            HouseRent::where('house_id', $id)->whereBetween('date', [$from, $to])->update(['rent' => $request['rent'], 'baki' => $request['rent'] - $request['jama'], 'jama' => $request['jama'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
+            HouseRent::where('house_id', $id)->whereBetween('date', [$from, $to])->update(['rent' => $request['rent'], 'baki' => $request['rent'] - $request['jama'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
             Admin_log::create([
                 'user_id' => $user->id, 'type_id' => 3, 'action_type_id' => 2, 'request_id' => $id,
                 'message' => 'House Updated.', 'edit_old_data' => json_encode($old_data), 'edit_new_data' => json_encode($request)

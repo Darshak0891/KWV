@@ -20,17 +20,19 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($data as $key => $notification)
-                            <tr>
-                                <td>{{ $key+1 }}</td>
-                                <td>{{ $notification->name}}</td>
-                                <td>{{ $notification->society_name}}</td>
-                                <td>{{ $notification->house_no}}</td>
-                                <td>{{ $notification->name}}</td>
-                                <td>{{ $notification->mobile_no}}</td>
-                                <td>{{ $notification->jama}}</td>
-                            </tr>
-                            @endforeach
+                            <a href="javascript:void(0)" class="dropdown-notifications-archive">
+                                @foreach($data as $key => $notification)
+                                <tr>
+                                    <td>{{ $key+1 }}</td>
+                                    <td>{{ $notification->name}}</td>
+                                    <td>{{ $notification->society_name}}</td>
+                                    <td>{{ $notification->house_no}}</td>
+                                    <td>{{ $notification->name}}</td>
+                                    <td>{{ $notification->mobile_no}}</td>
+                                    <td>{{ $notification->jama}}</td>
+                                </tr>
+                                @endforeach
+                            </a>
                         </tbody>
                     </table>
                 </div>

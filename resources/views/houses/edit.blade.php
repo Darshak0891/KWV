@@ -49,6 +49,11 @@
                             <input type="text" id="house_no" class="form-control" name="house_no"
                                 value="{{ $house->house_no }}" required="" />
                         </div>
+                        <div class="mb-3">
+                            <label for="name">Mobile No.</label>
+                            <input type="text" id="name" class="form-control" name="name" value="{{ $house->name }}"
+                                required="" />
+                        </div>
                         <label for="society">Society Name</label>
                         <select name="society_id" class="form-control">
                             <option value="">Select Society</option>
@@ -70,18 +75,8 @@
                                 value="{{ $house->box_no }}" required="" />
                         </div>
                         <div class="mb-3">
-                            <label for="rent">Baki</label>
-                            <input type="text" id="rent" class="form-control" name="baki" value="{{ $house->baki }}"
-                                required="" />
-                        </div>
-                        <div class="mb-3">
                             <label for="rent">Rent</label>
                             <input type="text" id="rent" class="form-control" name="rent" value="{{ $house->rent }}"
-                                required="" />
-                        </div>
-                        <div class="mb-3">
-                            <label for="rent">Jama</label>
-                            <input type="text" id="rent" class="form-control" name="jama" value="{{ $house->jama }}"
                                 required="" />
                         </div>
                         <div class="form-group" id="result">

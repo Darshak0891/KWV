@@ -28,7 +28,7 @@ class UserController extends Controller
         }
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
         try {
             $from = Carbon::now()->startOfMonth();
@@ -40,10 +40,11 @@ class UserController extends Controller
                     'houses.name',
                     'houses.mobile_no',
                     'houses.box_no',
-                    'house_rents.rent',
                     'house_rents.baki',
+                    'house_rents.rent',
                     'house_rents.jama',
                     'house_rents.date',
+                    'house_rents.remark',
                     'house_rents.dc',
                     'house_rents.nod',
                     'house_rents.id as hId',
@@ -73,7 +74,7 @@ class UserController extends Controller
         try {
             $data = HouseRent::where('id', $request['actionid'])->first();
             HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $data->baki - $request['jama'], 'remark' => $request['remark']]);
-            return redirect()->route('allocatesocieties.index')->with('success', 'Successfully Taken.');
+            return redirect()->route('allocatesocieties.show')->with('success', 'Successfully Taken.');
         } catch (Exception $e) {
             return redirect()->back();
         }

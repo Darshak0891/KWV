@@ -79,9 +79,6 @@
                                 <td>House No.</td>
                                 <td>Mobile No.</td>
                                 <td>Box_no</td>
-                                <td>Rent</td>
-                                <td>Credit</td>
-                                <td>Debit</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -89,9 +86,6 @@
                                 <td>{{ $old_data->house_no }}</td>
                                 <td>{{ $old_data->mobile_no }}</td>
                                 <td>{{ $old_data->box_no }}</td>
-                                <td>{{ $old_data->rent }}</td>
-                                <td>{{ $old_data->credit }}</td>
-                                <td>{{ $old_data->debit }}</td>
                             </tr>
                         </tbody>
                     </table><br>
@@ -102,9 +96,6 @@
                                 <td>House No.</td>
                                 <td>Mobile No.</td>
                                 <td>Box_no</td>
-                                <td>Rent</td>
-                                <td>Credit</td>
-                                <td>Debit</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -112,9 +103,6 @@
                                 <td>{{ $new_data->house_no }}</td>
                                 <td>{{ $new_data->mobile_no }}</td>
                                 <td>{{ $new_data->box_no }}</td>
-                                <td>{{ $new_data->rent }}</td>
-                                <td>{{ $new_data->credit }}</td>
-                                <td>{{ $new_data->debit }}</td>
                             </tr>
                         </tbody>
                     </table>

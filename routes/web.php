@@ -10,6 +10,7 @@ use App\Http\Controllers\EmployeeHouseController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ImageController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -89,6 +90,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/profile', [UserController::class, 'profile'])->name('profiles.index');
     Route::post('/profile-update', [UserController::class, 'profileUpdate'])->name('profiles.update');
+
 
     Route::get('/notification', [NotificationController::class, 'index'])->name('notifications.index');
 

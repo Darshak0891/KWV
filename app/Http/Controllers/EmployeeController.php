@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\House;
 use App\Models\Admin_log;
 use Illuminate\Support\Facades\Hash;
 use Exception;

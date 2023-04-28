@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Society;
 use App\Models\House;
+use App\Models\HouseRent;
 use \Carbon\Carbon;
 use App\Models\Admin_log;
 use Exception;
@@ -102,12 +103,27 @@ class EmployeeHouseController extends Controller
                     'house_rents.date',
                     'house_rents.rent',
                     'house_rents.baki',
-                    'house_rents.jama'
+                    'house_rents.jama',
+                    'house_rents.date',
+                    'house_rents.remark',
+                    'house_rents.dc',
+                    'house_rents.nod',
+                    'house_rents.id as hId',
                 )
                 ->whereBetween('house_rents.date', [$from, $to])
                 ->where('society_id', $house)->get();
             // dd($show_house);
             return view('employee_houses.show_house', compact('show_house'));
+        } catch (Exception $e) {
+            return redirect()->back();
+        }
+    }
+    public function actionpost(Request $request)
+    {
+        try {
+            $data = HouseRent::where('id', $request['actionid'])->first();
+            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $data->baki - $request['jama'], 'remark' => $request['remark']]);
+            return redirect()->route('allocatesocieties.show')->with('success', 'Successfully Taken.');
         } catch (Exception $e) {
             return redirect()->back();
         }

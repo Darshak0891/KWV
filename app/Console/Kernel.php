@@ -19,7 +19,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('demo:cron')
-            ->monthlyOn(9, '01:00');
+            ->everyMinute();
+        // ->monthlyOn(9, '01:00');
         // $schedule->command('inspire')->hourly();
     }
 

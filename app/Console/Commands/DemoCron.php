@@ -55,7 +55,7 @@ class DemoCron extends Command
                     ]
                 );
             }
-            \Log::info("cron run successfully in kw.");
+            \Log::info("cron run successfully in KWV Business.");
         } catch (Exception $e) {
             \Log::info($e);
         };

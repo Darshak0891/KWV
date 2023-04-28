@@ -17,7 +17,8 @@
                             <td>Baki</td>
                             <td>Rent</td>
                             <td>Jama</td>
-                            <td>Action</td>
+                            <!-- <td>Action</td> -->
+                            <td>Status</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -29,11 +30,25 @@
                             <td>{{ $data->box_no }}</td>
                             <td>{{ $data->baki }}</td>
                             <td>{{ $data->rent }}</td>
-                            <td>{{ $data->jama }}</td>
-                            @if($data->jama >= $data->rent)
+                            <td>
+                                <form method="post" id="action"
+                                    action="{{ route('allocatesocieties.actionpost', $data->hId) }}">
+                                    @csrf
+                                    @method('POST')
+
+                                    <input type="text" name="jama" value="{{ $data->jama }}" size="3" />
+                                    <input type="text" name="remark" value="{{ $data->remark }}" size="7" />
+
+                                    <input type="hidden" name="actionid" value="{{ $data->hId }}">
+                                    <button type="submit">Submit</button>
+                                </form>
+                            </td>
+                            <!-- <td></td> -->
+                            @if($data->baki == 0)
                             <td><button class="btn btn-success" disabled>Completed</button></td>
                             @else
-                            <td> <a class="btn btn-primary" href="{{ route('allocatesocieties.actions', $data->hId) }}">Action</a> </td>
+                            <td> <a class="btn btn-primary"
+                                    href="{{ route('allocatesocieties.actions', $data->hId) }}">Action</a> </td>
                             @endif
 
                         </tr>
