@@ -91,6 +91,9 @@ class EmployeeHouseController extends Controller
     public function showHouse(Request $request, $house)
     {
         try {
+            /* if (isset($request->system)) {
+                dd($request);
+            } */
             $from = Carbon::now()->startOfMonth();
             $to = Carbon::now()->endOfMonth()->addDay(9);
             $show_house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
@@ -114,10 +117,18 @@ class EmployeeHouseController extends Controller
                         $query->where('house_no', 'LIKE', '%' . $request->search . '%')
                             ->orWhere('name', 'LIKE', '%' . $request->search . '%');
                     }
+
+                    if (isset($request->system)) {
+                        if ($request->system == 'dc') {
+                            $query->where('dc', 1);
+                        } elseif ($request->system == 'nod') {
+                            $query->where('nod', 1);
+                        }
+                    }
                 })
                 ->whereBetween('house_rents.date', [$from, $to])
                 ->where('society_id', $house)->get();
-            // dd($show_house);
+            //dd($show_house);
             return view('employee_houses.show_house', compact('show_house', 'house'));
         } catch (Exception $e) {
             return redirect()->back();

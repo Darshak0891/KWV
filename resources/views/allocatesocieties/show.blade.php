@@ -3,7 +3,7 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><a href="{{ route('allocatesocieties.index') }}" class="text-muted fw-light">Allocated
             Society</a> / House List</h4>
-    <div class="card">
+    <div class="card"><br>
         <div class="input-group">
             <div class="form-outline">
                 <form action="{{ route('allocatesocieties.show', $id) }}" role="search" method="GET">
@@ -20,6 +20,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>House No.</th>
+                                <th>Name</th>
                                 <th>Mobile No.</th>
                                 <th>Box No.</th>
                                 <th>Baki</th>
@@ -33,6 +34,7 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $data->house_no }}</td>
+                                <td>{{ $data->name }}</td>
                                 <td>{{ $data->mobile_no }}</td>
                                 <td>{{ $data->box_no }}</td>
                                 <td>{{ $data->baki }}</td>

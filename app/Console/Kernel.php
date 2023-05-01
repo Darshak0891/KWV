@@ -20,7 +20,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('demo:cron')
             ->everyMinute();
-        // ->monthlyOn(9, '01:00');
+        // ->monthlyOn(9, '7:00');
         // $schedule->command('inspire')->hourly();
     }
 

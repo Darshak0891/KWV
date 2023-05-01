@@ -28,24 +28,6 @@ class UserController extends Controller
         }
     }
 
-    /* public function searchHouse(Request $request)
-    {
-        try {
-
-            return 1;
-            $app = House::where(function ($query) use ($request) {
-                if ($request->search) {
-                    $query->where('house_no', 'LIKE', '%' . $request->search . '%');
-                }
-            })->paginate(10);
-
-            return view('allocatesocieties.show', compact('app'))
-                ->with('i', (request()->input('page', 1) - 1) * 5);
-        } catch (Exception $e) {
-            return redirect()->back();
-        }
-    } */
-
     public function show(Request $request, $id)
     {
         try {
@@ -77,8 +59,11 @@ class UserController extends Controller
                 })
                 ->whereBetween('house_rents.date', [$from, $to])
                 ->where('society_id', $id)->where('dc', 0)->where('nod', 0)->get();
+
+
+
             // dd($id);
-            //dd($show_house);
+            //  dd($show_house);
             return view('allocatesocieties.show', compact('show_house', 'id'));
         } catch (Exception $e) {
             return redirect()->back();
@@ -102,7 +87,7 @@ class UserController extends Controller
     {
         try {
             $data = HouseRent::where('id', $request['actionid'])->first();
-            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $data->baki - $request['jama'], 'remark' => $request['remark']]);
+            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $data->baki - $request['jama'], 'remark' => $request['remark'], 'dc' => $request['dc']]);
             return redirect()->route('allocatesocieties.show')->with('success', 'Successfully Taken.');
         } catch (Exception $e) {
             return redirect()->back();

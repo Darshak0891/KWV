@@ -9,13 +9,23 @@
         <div class="input-group">
             <div class="form-outline">
                 <form action="{{ route('employee_houses.show_house', $house) }}" role="search" method="GET">
-                    <input type="search" name="search" class="form-control" placeholder="Search..." />
+                    <input type="search" name="search" class="form-control" placeholder="Search..." /><br>
+
+                    <select name="system" id="system1">
+                        <option value="all">ALL</option>
+                        <option value="dc">DC</option>
+                        <option value="nod">NOD</option>
+                    </select>
+
+                    <button type="submit">Submit</button>
                 </form>
             </div>
         </div>
         <br>
         <div class="row" align="right">
             <div class="col-12">
+
+                <br><br>
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <thead>
@@ -28,29 +38,52 @@
                                 <th>Baki</th>
                                 <th>Rent</th>
                                 <th>Jama</th>
+                                <th>Note</th>
+                                <th>DC</th>
+                                <th>Submit</th>
                                 <th>Status</th>
                             </tr>
                         <tbody>
                             @foreach($show_house as $key => $data)
                             <tr>
-                                <td>{{ $key+1 }}</td>
+                                <!-- <td>{{ $key+1 }}</td>
                                 <td>{{ $data->house_no }}</td>
                                 <td>{{ $data->name }}</td>
                                 <td>{{ $data->mobile_no }}</td>
                                 <td>{{ $data->box_no }}</td>
                                 <td>{{ $data->baki }}</td>
-                                <td>{{ $data->rent }}</td>
+                                <td>{{ $data->rent }}</td> -->
+                                <td>{{ $key+1 }}</td>
                                 <td>
-                                    <form method="post" id="action" action="{{ route('allocatesocieties.actionpost', $data->hId) }}">
+                                    <form method="post" id="action"
+                                        action="{{ route('allocatesocieties.actionpost', $data->hId) }}">
                                         @csrf
                                         @method('POST')
 
-                                        <input type="text" name="jama" value="{{ $data->jama }}" size="3" />
-                                        <input type="text" name="remark" value="{{ $data->remark }}" size="9" />
+                                        <input type="text" name="house_no" value="{{ $data->house_no }}" size="5" />
 
-                                        <input type="hidden" name="actionid" value="{{ $data->hId }}">
-                                        <button type="submit">Submit</button>
-                                    </form>
+                                <td> <input type="text" name="name" value="{{ $data->name }}" size="25" /></td>
+                                <td> <input type="text" name="mobile_no" value="{{ $data->mobile_no }}" size="10" />
+                                </td>
+                                <td> <input type="text" name="box_no" value="{{ $data->box_no }}" size="15" /></td>
+                                <td> <input type="text" name="baki" value="{{ $data->baki }}" size="3" /></td>
+                                <td> <input type="text" name="rent" value="{{ $data->rent }}" size="3" /></td>
+
+                                <td> <input type="text" name="jama" value="{{ $data->jama }}" size="3" /></td>
+
+                                <td><input type="text" name="remark" value="{{ $data->remark }}" placeholder="Note"
+                                        size="9" /></td>
+
+                                <td> <input type="radio" name="dc" value="1" {{ ($data->dc=="1") ? "checked" : "" }}
+                                        required="" class="form-check-input">Yes
+                                    <input type="radio" name="dc" value="0" {{ ($data->dc=="0") ? "checked" : "" }}
+                                        required="" class="form-check-input">No
+                                </td>
+
+                                <input type="hidden" name="actionid" value="{{ $data->hId }}">
+
+                                <td> <button type="submit" class="btn-default">Submit</button></td>
+                                </form>
                                 </td>
                                 @if($data->baki == 0)
                                 <td><button class="btn btn-success" disabled>Completed</button></td>
