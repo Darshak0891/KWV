@@ -18,7 +18,6 @@
             <form method="post" action="{{ route('employee_houses.store') }}" id="regForm" autocomplete="off">
                 @csrf
 
-
                 <div class="mb-3">
                     <label>Select Employee</label>
                     <select name="user_id" id="user_id" class="form-control" required="">
@@ -41,30 +40,30 @@
     </div>
 </div>
 <script>
-$(document).ready(function() {
-    $('#user_id').on('change', function() {
-        //  console.log(111)
-        var idUser = this.value;
-        $("#house").html('');
-        $.ajax({
-            url: "{{route('employee_houses.fetchsociety')}}",
-            type: "POST",
-            data: {
-                user_id: idUser,
-                _token: '{{csrf_token()}}'
-            },
-            dataType: 'json',
-            success: function(result) {
-                $('#society').html('<option value="">Select Society</option>');
-                $.each(result.societies, function(key, value) {
-                    $("#society").append('<option value="' + value
-                        .id + '">' + value.society_name + '</option>');
-                });
-            }
+    $(document).ready(function() {
+        $('#user_id').on('change', function() {
+            //  console.log(111)
+            var idUser = this.value;
+            $("#house").html('');
+            $.ajax({
+                url: "{{route('employee_houses.fetchsociety')}}",
+                type: "POST",
+                data: {
+                    user_id: idUser,
+                    _token: '{{csrf_token()}}'
+                },
+                dataType: 'json',
+                success: function(result) {
+                    $('#society').html('<option value="">Select Society</option>');
+                    $.each(result.societies, function(key, value) {
+                        $("#society").append('<option value="' + value
+                            .id + '">' + value.society_name + '</option>');
+                    });
+                }
+            });
         });
-    });
 
-});
+    });
 </script>
 
 @endsection

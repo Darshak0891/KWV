@@ -61,13 +61,6 @@
                         <tbody>
                             @foreach($show_house as $key => $data)
                             <tr>
-                                <!-- <td>{{ $key+1 }}</td>
-                                <td>{{ $data->house_no }}</td>
-                                <td>{{ $data->name }}</td>
-                                <td>{{ $data->mobile_no }}</td>
-                                <td>{{ $data->box_no }}</td>
-                                <td>{{ $data->baki }}</td>
-                                <td>{{ $data->rent }}</td> -->
                                 <td>{{ $key+1 }}</td>
                                 <td>
                                     <form method="post" id="action"

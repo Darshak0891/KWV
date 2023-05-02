@@ -15,7 +15,6 @@ class SocietyController extends Controller
     public function index(Request $request)
     {
         try {
-            //$society = Society::all();
             $society = Society::where(function ($query) use ($request) {
                 if ($request->search) {
                     $query->where('society_name', 'LIKE', '%' . $request->search . '%');

@@ -9,8 +9,6 @@
                         <div class="card-body text-nowrap">
                             <h3 class="card-title mb-0">Hey {{auth()->user()->name}}! </h5>
                                 <p class="mb-2">WELCOME TO KWV!</p>
-                                <!-- <h4 class="text-primary mb-1">$48.9k</h4>
-                                <a href="javascript:;" class="btn btn-primary">View Sales</a> -->
                         </div>
                     </div>
                     <div class="col-5 text-center text-sm-left">
@@ -90,7 +88,6 @@
                 <div class="card-header d-flex justify-content-between">
                     <div class="card-title m-0 me-2">
                         <h5 class="m-0 me-2">Employers Society</h5>
-                        <!-- <small class="text-muted">Counter April 2022</small> -->
                     </div>
 
                 </div>
@@ -99,7 +96,6 @@
                         @foreach($userSocietyData as $data)
                         <li class="d-flex mb-4 pb-1 align-items-center">
                             <i class="menu-icon tf-icons ti ti-users"></i>
-                            <!-- <img src="../../assets/img/icons/brands/chrome.png" alt="Chrome" height="28" class="me-3 rounded" /> -->
                             <div class="d-flex w-100 align-items-center gap-2">
                                 <div class="d-flex justify-content-between flex-grow-1 flex-wrap">
                                     <div>
@@ -110,7 +106,6 @@
                                         <h6 class="mb-0">{{$data->totalSociety}}</h6>
                                     </div>
                                 </div>
-                                <!-- <div class="chart-progress" data-color="secondary" data-series="85"></div> -->
                             </div>
                         </li>
                         @endforeach

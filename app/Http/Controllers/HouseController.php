@@ -85,9 +85,6 @@ class HouseController extends Controller
     public function show(House $house)
     {
         try {
-            /* $house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
-                ->select('house_rents.id', 'house_rents.rent')
-                ->get(); */
             return view('houses.show', compact('house'));
         } catch (Exception $e) {
             return redirect()->back();
@@ -101,9 +98,7 @@ class HouseController extends Controller
                 ->select('houses.id', 'houses.society_id', 'houses.house_no', 'houses.name', 'houses.mobile_no', 'houses.box_no', 'house_rents.rent', 'house_rents.dc', 'house_rents.nod')
                 ->where('houses.id', $id)
                 ->first();
-            //dd($house);
             $society = Society::get();
-            //dd($society);
             return view('houses.edit', compact('house', 'society'));
         } catch (Exception $e) {
             return redirect()->back();
@@ -113,7 +108,6 @@ class HouseController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            // dd($request);
             $user = auth()->user();
 
             $request->validate([
@@ -123,7 +117,6 @@ class HouseController extends Controller
                 'box_no' => 'required',
                 'rent' => 'required',
             ]);
-            // dd(json_encode($request->all()));
             $old_data = House::where('id', $id)->first();
             $from = Carbon::now()->startOfMonth();
             $to = Carbon::now()->endOfMonth()->addDay(9);
@@ -141,7 +134,6 @@ class HouseController extends Controller
             ]);
             return redirect()->route('houses.index')->with('success', 'House has been updated.');
         } catch (Exception $e) {
-            // dd($e);
             return redirect()->back();
         }
     }
@@ -176,7 +168,6 @@ class HouseController extends Controller
     {
         try {
             $dad = Excel::import(new HousesImport, $request->file('file')->store('temp'));
-            // dd($dad);
             return redirect()->route('houses.index')->with('success', 'Import Successfully!.');
         } catch (Exception $e) {
             return redirect()->back()->with("Error", "Something went wrong");

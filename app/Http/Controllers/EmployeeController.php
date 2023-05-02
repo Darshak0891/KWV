@@ -37,9 +37,7 @@ class EmployeeController extends Controller
     {
         try {
             $employee = User::all();
-            // dd($employee);
             return $employee;
-            //return view('employees.index',compact('employee'));
         } catch (Exception $e) {
             return redirect()->back();
         }
@@ -102,7 +100,6 @@ class EmployeeController extends Controller
     {
         try {
             $user = auth()->user();
-            //dd($user);
             $updateData = $request->validate([
                 'name' => 'required|max:255',
                 'email' => 'required|max:255',
@@ -143,7 +140,6 @@ class EmployeeController extends Controller
     public function adminlog(Request $request)
     {
         try {
-            //$admin_log = Admin_log::all();
             $admin_log = Admin_log::join('users', 'users.id', '=', 'admin_logs.user_id')
                 ->select(
                     'admin_logs.id',
@@ -159,7 +155,6 @@ class EmployeeController extends Controller
                         $query->where('name', 'LIKE', '%' . $request->search . '%');
                     }
                 })->paginate(5);
-            //  dd($admin_log);
             return view('adminlogs.index', compact('admin_log'));
         } catch (Exception $e) {
             return redirect()->back();
@@ -170,7 +165,6 @@ class EmployeeController extends Controller
     {
         try {
             $show = Admin_log::where('id', $id)->first();
-            // return(json_decode($show->edit_old_data)->name);
             $old_data = json_decode($show->edit_old_data);
             $new_data = json_decode($show->edit_new_data);
 
@@ -186,7 +180,6 @@ class EmployeeController extends Controller
             $employee = User::find($request->employee_id);
             $employee->status = $request->status;
             $employee->save();
-            //$status = User::where('id', $id)->update(['is_active' => 1]);
         } catch (Exception $e) {
             return redirect()->back();
         }

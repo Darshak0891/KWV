@@ -50,7 +50,6 @@ class HomeController extends Controller
             $totalHouse = House::count();
 
             $userSociety = EmployeeHouse::join('users', 'users.id', '=', 'employee_houses.user_id')
-                // ->join('societies', 'societies.id', '=', 'employee_houses.society_id')
                 ->join('houses', 'houses.society_id', '=', 'employee_houses.society_id')
                 ->join('house_rents', 'house_rents.house_id', '=', 'houses.id')
                 ->selectRaw('users.name, count(houses.id) as totalHouses, sum(house_rents.rent) as totalRents, sum(house_rents.baki) as totalBaki, sum(house_rents.jama) as totalJama')
@@ -64,7 +63,6 @@ class HomeController extends Controller
                 ->get();
             $todayCollection = HouseRent::whereRaw('updated_at >= DATE(NOW()) - INTERVAL 1 DAY')->sum('jama');
 
-            // dd($userSociety);
             return view('admin_dashboard', compact('totalEmp', 'totalSoc', 'totalHouse', 'userSociety', 'userSocietyData', 'todayCollection'));
         } catch (Exception $e) {
             dd($e);
@@ -92,7 +90,6 @@ class HomeController extends Controller
             $collected = HouseRent::whereIn('house_id', $houseDataPluck)->sum('jama');
             return view('user_dashboard', compact('totalSociety', 'totalHouses', 'remainingCollection', 'collected'));
         } catch (Exception $e) {
-            //dd($e);
             return redirect()->back();
         }
     }

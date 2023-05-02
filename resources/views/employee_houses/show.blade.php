@@ -4,7 +4,6 @@
     <h4 class="fw-bold py-3 mb-4"><a href="{{ route('employee_houses.index') }}" class="text-muted fw-light">Employee &
             House</a> / Society List</h4>
     <!-- Users List Table -->
-
     <div class="card">
         <br>
         <div class="row" align="right">

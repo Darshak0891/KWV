@@ -65,7 +65,6 @@
                                         <button type="submit">Submit</button>
                                     </form>
                                 </td>
-                                <!-- <td></td> -->
                                 @if($data->baki == 0)
                                 <td><button class="btn btn-success" disabled>Completed</button></td>
                                 @else

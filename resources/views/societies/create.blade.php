@@ -9,7 +9,8 @@
                 <div class="form-group">
                     @csrf
                     <label for="society_name">Society Name</label>
-                    <input type="text" id="society_name" class="form-control" name="society_name" placeholder="ex. society 1" />
+                    <input type="text" id="society_name" class="form-control" name="society_name"
+                        placeholder="ex. society 1" />
                 </div><br><br>
                 <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">ADD SOCIETY</button>
             </form>

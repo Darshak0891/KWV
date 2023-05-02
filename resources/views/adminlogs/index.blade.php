@@ -4,16 +4,16 @@
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Logs /</span> Admin Logs</h4>
     <!-- Users List Table -->
     <style>
-        .search {
-            margin: 30px;
-            margin-top: 5px;
-            color: green;
-        }
+    .search {
+        margin: 30px;
+        margin-top: 5px;
+        color: green;
+    }
 
-        .page {
-            margin-bottom: 5px;
-            margin-left: 400px;
-        }
+    .page {
+        margin-bottom: 5px;
+        margin-left: 400px;
+    }
     </style>
     <div class="card">
         @if (\Session::has('success'))
@@ -62,7 +62,6 @@
                                 <td>Employee & Houses</td>
                                 @endif
 
-
                                 @if($admin_logs->action_type_id == 1)
                                 <td>create</td>
                                 @elseif($admin_logs->action_type_id == 2)
@@ -70,8 +69,6 @@
                                 @else
                                 <td>delete</td>
                                 @endif
-
-                                <!-- <td>{{ $admin_logs->request_id }}</td> -->
                                 <td>{{ $admin_logs->message }}</td>
                                 @if($admin_logs->action_type_id == 2)
                                 <td><a class="btn btn-primary" href="{{ route('adminlogs.show', $admin_logs->id)}}">Show

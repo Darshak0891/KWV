@@ -28,9 +28,7 @@ class EmployeeHouseController extends Controller
     public function fetchSociety(Request $request)
     {
         try {
-            // return($request);
             $data = EmployeeHouse::pluck('society_id');
-            //return $data;
             $emp_soc['societies'] = Society::whereNotIn('id', $data)->get();
             return response()->json($emp_soc);
         } catch (Exception $e) {
@@ -43,9 +41,6 @@ class EmployeeHouseController extends Controller
         try {
 
             $employee_name = User::where('is_admin', 0)->get();
-            /* $employee_society = Society::join('employee_houses', 'employee_houses.society_id', '!=', 'societies.id')
-        ->get(); */
-            // dd($employee_society);
             return view('employee_houses.create', compact('employee_name'));
         } catch (Exception $e) {
             return redirect()->back();
@@ -62,7 +57,6 @@ class EmployeeHouseController extends Controller
                 'society_id' => 'required',
             ]);
 
-            // EmployeeHouse::create(['user_id' => $request->user_id, 'society_id' => $request->society_id ]);
             $emphouse = EmployeeHouse::create($storeData);
             Admin_log::create([
                 'user_id' => $user->id, 'type_id' => 4, 'action_type_id' => 1,
@@ -91,9 +85,6 @@ class EmployeeHouseController extends Controller
     public function showHouse(Request $request, $house)
     {
         try {
-            /* if (isset($request->system)) {
-                dd($request);
-            } */
             $from = Carbon::now()->startOfMonth();
             $to = Carbon::now()->endOfMonth()->addDay(9);
             $show_house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')

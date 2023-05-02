@@ -4,16 +4,16 @@
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Employee /</span> Employee List</h4>
     <!-- Users List Table -->
     <style>
-        .search {
-            margin: 30px;
-            margin-top: 5px;
-            color: green;
-        }
+    .search {
+        margin: 30px;
+        margin-top: 5px;
+        color: green;
+    }
 
-        .page {
-            margin-bottom: 5px;
-            margin-left: 400px;
-        }
+    .page {
+        margin-bottom: 5px;
+        margin-left: 400px;
+    }
     </style>
     <div class="card">
 
@@ -35,7 +35,8 @@
         <br>
         <div class="row" align="right">
             <div class="col-12">
-                <a class="btn btn-primary me-sm-3 me-1 data-submit float-right" href="{{ route('employees.create') }}">Add Employee</a>
+                <a class="btn btn-primary me-sm-3 me-1 data-submit float-right"
+                    href="{{ route('employees.create') }}">Add Employee</a>
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <caption class="ms-4">
@@ -59,11 +60,15 @@
                                 <td>{{$employees->phone}}</td>
 
                                 <td class="text-center">
-                                    <a href="{{ route('employees.edit', $employees->id)}}" class="btn btn-primary btn-sm">Edit</a>
-                                    <form action="{{ route('employees.delete', $employees->id)}}" method="post" style="display: inline-block">
+                                    <a href="{{ route('employees.edit', $employees->id)}}"
+                                        class="btn btn-primary btn-sm">Edit</a>
+                                    <form action="{{ route('employees.delete', $employees->id)}}" method="post"
+                                        style="display: inline-block">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this employee?')" type="submit">Delete</button>
+                                        <button class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Are you sure you want to delete this employee?')"
+                                            type="submit">Delete</button>
                                     </form>
                                 </td>
                             </tr>

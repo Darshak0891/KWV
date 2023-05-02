@@ -31,9 +31,6 @@ class UserController extends Controller
     public function show(Request $request, $id)
     {
         try {
-            /* if (!empty($request) && isset($request->search)) {
-                return ($request);
-            } */
             $from = Carbon::now()->startOfMonth();
             $to = Carbon::now()->endOfMonth()->addDay(9);
             $show_house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
@@ -60,10 +57,6 @@ class UserController extends Controller
                 ->whereBetween('house_rents.date', [$from, $to])
                 ->where('society_id', $id)->where('dc', 0)->where('nod', 0)->get();
 
-
-
-            // dd($id);
-            //  dd($show_house);
             return view('allocatesocieties.show', compact('show_house', 'id'));
         } catch (Exception $e) {
             return redirect()->back();
@@ -76,7 +69,6 @@ class UserController extends Controller
     {
         try {
             $action = HouseRent::where('id', $id)->first();
-            // dd($action);
             return view('allocatesocieties.action', compact('action'));
         } catch (Exception $e) {
             return redirect()->back();
@@ -112,7 +104,6 @@ class UserController extends Controller
             $updateData = $request->validate([
                 'name' => 'required|max:255',
                 'email' => 'required|max:255',
-                // 'password' => 'required|string|min:8|confirmed',
                 'phone' => 'required|numeric'
             ]);
 

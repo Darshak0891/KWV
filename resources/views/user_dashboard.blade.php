@@ -18,13 +18,12 @@
                             <div class="card-body text-nowrap">
                                 <h5 class="card-title mb-0">Hello {{auth()->user()->name}}! </h5>
                                 <p class="mb-2">WELCOME TO KWV!</p>
-                                <!-- <h4 class="text-primary mb-1">$48.9k</h4>
-                                <a href="javascript:;" class="btn btn-primary">View Sales</a> -->
                             </div>
                         </div>
                         <div class="col-5 text-center text-sm-left">
                             <div class="card-body pb-0 px-0 px-md-4">
-                                <img src="../../assets/img/illustrations/card-advance-sale.png" height="140" alt="view sales" />
+                                <img src="../../assets/img/illustrations/card-advance-sale.png" height="140"
+                                    alt="view sales" />
                             </div>
                         </div>
                     </div>
@@ -37,7 +36,6 @@
                     <div class="card-header">
                         <div class="d-flex justify-content-between mb-3">
                             <h5 class="card-title mb-0">REPORT</h5>
-                            <!-- <small class="text-muted">Updated 1 month ago</small> -->
                         </div>
                     </div>
                     <div class="card-body">
@@ -69,7 +67,6 @@
                                 <div class="d-flex align-items-center">
                                     <div class="badge rounded-pill bg-label-danger me-3 p-2">
                                         <span style='font-size:20px;'>&#8377;</span>
-                                        <!-- <p>I will display &#8377;</p>&#8377; -->
                                     </div>
                                     <div class="card-info">
                                         <h5 class="mb-0">{{$remainingCollection}}</h5>
