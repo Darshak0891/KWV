@@ -49,7 +49,7 @@
                         <tbody>
                             @foreach($admin_log as $key => $admin_logs)
                             <tr>
-                                <td>{{ $key+1 }}</td>
+                                <td>{{ ($admin_log->currentpage()-1) * $admin_log->perpage() + $key + 1 }}</td>
                                 <td>{{ $admin_logs->name }}</td>
 
                                 @if($admin_logs->type_id == 1)

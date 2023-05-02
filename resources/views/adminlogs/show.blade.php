@@ -128,13 +128,13 @@
                                 <td>{{ $new_data->box_no }}</td>
                                 <td>{{ $new_data->rent }}</td>
 
-                                @if($old_data->dc == 0)
+                                @if($new_data->dc == 0)
                                 <td>Inactive</td>
                                 @else
                                 <td>Active</td>
                                 @endif
 
-                                @if($old_data->nod == 0)
+                                @if($new_data->nod == 0)
                                 <td>Inactive</td>
                                 @else
                                 <td>Active</td>

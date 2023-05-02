@@ -54,7 +54,7 @@
                         <tbody>
                             @foreach($employee as $key => $employees)
                             <tr>
-                                <td>{{ $key+1 }}</td>
+                                <td>{{ ($employee->currentpage()-1) * $employee->perpage() + $key + 1 }}</td>
                                 <td>{{$employees->name}}</td>
                                 <td>{{$employees->email}}</td>
                                 <td>{{$employees->phone}}</td>
