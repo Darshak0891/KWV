@@ -3,9 +3,21 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><a href="{{ route('allocatesocieties.index') }}" class="text-muted fw-light">Allocated
             Society</a> / House List</h4>
+    <style>
+    .search {
+        margin: 30px;
+        margin-top: 5px;
+        color: green;
+    }
+
+    .page {
+        margin-bottom: 5px;
+        margin-left: 400px;
+    }
+    </style>
     <div class="card"><br>
         <div class="input-group">
-            <div class="form-outline">
+            <div class="search">
                 <form action="{{ route('allocatesocieties.show', $id) }}" role="search" method="GET">
                     <input type="search" name="search" class="form-control" placeholder="Search..." />
                 </form>
@@ -40,12 +52,14 @@
                                 <td>{{ $data->baki }}</td>
                                 <td>{{ $data->rent }}</td>
                                 <td>
-                                    <form method="post" id="action" action="{{ route('allocatesocieties.actionpost', $data->hId) }}">
+                                    <form method="post" id="action"
+                                        action="{{ route('allocatesocieties.actionpost', $data->hId) }}">
                                         @csrf
                                         @method('POST')
 
                                         <input type="text" name="jama" value="{{ $data->jama }}" size="3" />
-                                        <input type="text" name="remark" value="{{ $data->remark }}" size="9" placeholder="Note" />
+                                        <input type="text" name="remark" value="{{ $data->remark }}" size="9"
+                                            placeholder="Note" />
 
                                         <input type="hidden" name="actionid" value="{{ $data->hId }}">
                                         <button type="submit">Submit</button>

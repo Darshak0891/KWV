@@ -42,7 +42,18 @@
             </div>
         </div> -->
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Society /</span> Society List</h4>
+        <style>
+        .search {
+            margin: 30px;
+            margin-top: 5px;
+            color: green;
+        }
 
+        .page {
+            margin-bottom: 5px;
+            margin-left: 400px;
+        }
+        </style>
         <div class="card">
             @if (\Session::has('success'))
             <div class="alert alert-success">
@@ -51,9 +62,9 @@
                 </ul>
             </div>
             @endif
-            <br>
+            <br><br>
             <div class="input-group">
-                <div class="form-outline">
+                <div class="search">
                     <form action="{{ route('societies.index') }}" role="search" method="GET">
                         <input type="search" name="search" class="form-control" placeholder="Search..." />
                     </form>
@@ -101,7 +112,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $society->links() }}
+                <div class="page">
+                    {{ $society->links() }}
+                </div>
             </div>
         </div>
     </div>

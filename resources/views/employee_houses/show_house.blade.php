@@ -4,17 +4,32 @@
     <h4 class="fw-bold py-3 mb-4"><a href="{{ route('employee_houses.index') }}" class="text-muted fw-light">Employee &
             House</a> / House List</h4>
     <!-- Users List Table -->
+    <style>
+    .search {
+        margin: 30px;
+        margin-top: 5px;
+        color: green;
+    }
+
+    .page {
+        margin-bottom: 5px;
+        margin-left: 400px;
+    }
+    </style>
     <div class="card">
         <br>
         <div class="input-group">
-            <div class="form-outline">
+            <div class="search">
                 <form action="{{ route('employee_houses.show_house', $house) }}" role="search" method="GET">
                     <input type="search" name="search" class="form-control" placeholder="Search..." /><br>
 
                     <select name="system" id="system1">
-                        <option value="all">ALL</option>
-                        <option value="dc">DC</option>
-                        <option value="nod">NOD</option>
+                        <option value="all" {{ (request()->input('system') == 'all') ? 'selected' : '' }}>ALL
+                        </option>
+                        <option value="dc" {{ (request()->input('system') == 'dc') ? 'selected' : '' }}>DC
+                        </option>
+                        <option value="nod" {{ (request()->input('system') == 'nod') ? 'selected' : '' }}>NOD
+                        </option>
                     </select>
 
                     <button type="submit">Submit</button>

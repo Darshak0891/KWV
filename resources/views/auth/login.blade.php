@@ -58,6 +58,7 @@
 
         <div class="d-flex col-12 col-lg-5 align-items-center p-sm-5 p-4">
             <div class="w-px-400 mx-auto">
+                <img src="{{url('/image/kwv.jpg')}}" alt="Image" width="150" height="150" />
                 <h3 class="mb-1 fw-bold">Welcome to KWV! 👋</h3>
                 <p class="mb-4">Please sign-in to your account and start the adventure</p>
                 @if (\Session::has('error'))

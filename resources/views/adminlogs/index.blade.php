@@ -3,6 +3,18 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Logs /</span> Admin Logs</h4>
     <!-- Users List Table -->
+    <style>
+        .search {
+            margin: 30px;
+            margin-top: 5px;
+            color: green;
+        }
+
+        .page {
+            margin-bottom: 5px;
+            margin-left: 400px;
+        }
+    </style>
     <div class="card">
         @if (\Session::has('success'))
         <div class="alert alert-success">
@@ -11,9 +23,9 @@
             </ul>
         </div>
         @endif
-        <br>
+        <br><br>
         <div class="input-group">
-            <div class="form-outline">
+            <div class="search">
                 <form action="{{ route('adminlogs.index') }}" role="search" method="GET">
                     <input type="search" name="search" class="form-control" placeholder="Search..." />
                 </form>
@@ -72,7 +84,9 @@
                             @endforeach
                         </tbody>
                     </table><br>
-                    {{ $admin_log->links('pagination::bootstrap-4') }}
+                    <div class="page">
+                        {{ $admin_log->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>
