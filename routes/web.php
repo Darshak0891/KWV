@@ -75,7 +75,8 @@ Route::group(['prefix' => 'employee_houses', 'middleware' => ['is_admin']], func
     Route::get('/create', [EmployeeHouseController::class, 'create'])->name('employee_houses.create');
     Route::post('/store', [EmployeeHouseController::class, 'store'])->name('employee_houses.store');
     Route::get('/{id}/show', [EmployeeHouseController::class, 'show'])->name('employee_houses.show');
-    Route::get('/{house}/show_house', [EmployeeHouseController::class, 'showHouse'])->name('employee_houses.show_house');
+    Route::get('/{id}/show_house', [EmployeeHouseController::class, 'showHouse'])->name('employee_houses.show_house');
+    Route::post('/actionpost/{id}', [EmployeeHouseController::class, 'actionpost'])->name('employee_houses.actionpost');
     Route::delete('/{id}/delete', [EmployeeHouseController::class, 'delete'])->name('employee_houses.delete');
 });
 
@@ -85,7 +86,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/allocatesocieties', [UserController::class, 'index'])->name('allocatesocieties.index');
     Route::get('/{id}/show', [UserController::class, 'show'])->name('allocatesocieties.show');
     Route::get('/{id}/actions', [UserController::class, 'action'])->name('allocatesocieties.actions');
-    Route::post('/actionpost', [UserController::class, 'actionpost'])->name('allocatesocieties.actionpost');
+    //Route::post('/actionpost', [UserController::class, 'actionpost'])->name('allocatesocieties.actionpost');
 
     // Route::get('/searchHouse', [UserController::class, 'searchHouse'])->name('allocatesocieties.searchHouse');
 

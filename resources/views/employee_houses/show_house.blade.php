@@ -20,7 +20,7 @@
         <br>
         <div class="input-group">
             <div class="search">
-                <form action="{{ route('employee_houses.show_house', $house) }}" role="search" method="GET">
+                <form action="{{ route('employee_houses.show_house', $id) }}" role="search" method="GET">
                     <input type="search" name="search" class="form-control" placeholder="Search..." /><br>
 
                     <select name="system" id="system1">
@@ -63,8 +63,8 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>
-                                    <form method="post" id="action"
-                                        action="{{ route('allocatesocieties.actionpost', $data->hId) }}">
+
+                                    <form method="post" action="{{ route('employee_houses.actionpost', $data->id) }}">
                                         @csrf
                                         @method('POST')
 
@@ -74,7 +74,9 @@
                                 <td> <input type="text" name="mobile_no" value="{{ $data->mobile_no }}" size="10" />
                                 </td>
                                 <td> <input type="text" name="box_no" value="{{ $data->box_no }}" size="15" /></td>
+
                                 <td> <input type="text" name="baki" value="{{ $data->baki }}" size="3" /></td>
+
                                 <td> <input type="text" name="rent" value="{{ $data->rent }}" size="3" /></td>
 
                                 <td> <input type="text" name="jama" value="{{ $data->jama }}" size="3" /></td>

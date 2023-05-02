@@ -82,9 +82,12 @@ class EmployeeHouseController extends Controller
         }
     }
 
-    public function showHouse(Request $request, $house)
+    public function showHouse(Request $request, $id)
     {
         try {
+            /* if (isset($request->system)) {
+                dd($request);
+            } */
             $from = Carbon::now()->startOfMonth();
             $to = Carbon::now()->endOfMonth()->addDay(9);
             $show_house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
@@ -118,20 +121,32 @@ class EmployeeHouseController extends Controller
                     }
                 })
                 ->whereBetween('house_rents.date', [$from, $to])
-                ->where('society_id', $house)->get();
+                ->where('society_id', $id)->get();
             //dd($show_house);
-            return view('employee_houses.show_house', compact('show_house', 'house'));
+            return view('employee_houses.show_house', compact('show_house', 'id'));
         } catch (Exception $e) {
             return redirect()->back();
         }
     }
-    public function actionpost(Request $request)
+    public function actionpost(Request $request, $id)
     {
         try {
+            //dd($id);
+            //return 1;
+            //dd($request);
+            /* $data = House::where('id', $id)->first();
+            dd($data);*/
+            House::where('id', $id)->update(['house_no' => $request['house_no'],'name' => $request['name'], 'mobile_no' => $request['mobile_no'], 'box_no' => $request['box_no']]);
+
             $data = HouseRent::where('id', $request['actionid'])->first();
-            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $data->baki - $request['jama'], 'remark' => $request['remark']]);
-            return redirect()->route('allocatesocieties.show')->with('success', 'Successfully Taken.');
+            //dd($data);
+            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $data->baki - $request['jama'], 'remark' => $request['remark'], 'rent' => $request['rent']]);
+
+
+
+            return redirect()->back()->with('success', 'Successfully Taken.');
         } catch (Exception $e) {
+            //dd($e);
             return redirect()->back();
         }
     }
