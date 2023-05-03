@@ -11,6 +11,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ReportController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -88,8 +90,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/{id}/actions', [UserController::class, 'action'])->name('allocatesocieties.actions');
     Route::post('/actionpost', [UserController::class, 'actionpost'])->name('allocatesocieties.actionpost');
 
-    // Route::get('/searchHouse', [UserController::class, 'searchHouse'])->name('allocatesocieties.searchHouse');
-
 
     Route::get('/profile', [UserController::class, 'profile'])->name('profiles.index');
     Route::post('/profile-update', [UserController::class, 'profileUpdate'])->name('profiles.update');
@@ -99,6 +99,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/change-password', [UserController::class, 'changePassword'])->name('profiles.change-password');
     Route::post('/change-password', [UserController::class, 'updatePassword'])->name('profiles.update-password');
+
+    Route::get('/report', [ReportController::class, 'index'])->name('reports.index');
+    Route::get('/file_export', [ReportController::class, 'fileExport'])->name('reports.export');
 });
 
 Auth::routes();
