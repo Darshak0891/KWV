@@ -131,17 +131,27 @@ class EmployeeHouseController extends Controller
     public function actionpost(Request $request, $id)
     {
         try {
-            //dd($id);
-            //return 1;
             //dd($request);
-            /* $data = House::where('id', $id)->first();
-            dd($data);*/
-            House::where('id', $id)->update(['house_no' => $request['house_no'],'name' => $request['name'], 'mobile_no' => $request['mobile_no'], 'box_no' => $request['box_no']]);
+            $user = auth()->user();
+
+            $old_data = House::where('id', $id)->first();
+            $from = Carbon::now()->startOfMonth();
+            $to = Carbon::now()->endOfMonth()->addDay(9);
+            $houseRentData = HouseRent::where('id', $id)->whereBetween('date', [$from, $to])->select('house_rents.rent', 'house_rents.dc', 'house_rents.nod')->first();
+            $old_data['rent'] = $houseRentData->rent;
+            $old_data['dc'] = $houseRentData->dc;
+            $old_data['nod'] = $houseRentData->nod;
+
+            House::where('id', $id)->update(['house_no' => $request['house_no'], 'name' => $request['name'], 'mobile_no' => $request['mobile_no'], 'box_no' => $request['box_no']]);
 
             $data = HouseRent::where('id', $request['actionid'])->first();
             //dd($data);
-            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $data->baki - $request['jama'], 'remark' => $request['remark'], 'rent' => $request['rent']]);
+            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $request['rent'] - $request['jama'], 'remark' => $request['remark'], 'rent' => $request['rent'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
 
+            Admin_log::create([
+                'user_id' => $user->id, 'type_id' => 3, 'action_type_id' => 2, 'request_id' => $id,
+                'message' => 'House Updated.', 'edit_old_data' => json_encode($old_data), 'edit_new_data' => json_encode($request->all())
+            ]);
 
 
             return redirect()->back()->with('success', 'Successfully Taken.');

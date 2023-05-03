@@ -49,7 +49,7 @@
                                 value="{{ $house->house_no }}" required="" />
                         </div>
                         <div class="mb-3">
-                            <label for="name">Mobile No.</label>
+                            <label for="name">Name</label>
                             <input type="text" id="name" class="form-control" name="name" value="{{ $house->name }}"
                                 required="" />
                         </div>
@@ -120,14 +120,6 @@
                     required: true,
                     number: true
                 },
-                credit: {
-                    required: true,
-                    number: true
-                },
-                debit: {
-                    required: true,
-                    number: true
-                },
             },
             messages: {
                 house_no: {
@@ -143,14 +135,6 @@
                 },
                 rent: {
                     required: "Rent is required",
-                    number: "Please enter a number"
-                },
-                credit: {
-                    required: "Credit is required",
-                    number: "Please enter a number"
-                },
-                debit: {
-                    required: "Debit is required",
                     number: "Please enter a number"
                 },
                 name: {

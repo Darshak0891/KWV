@@ -86,7 +86,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/allocatesocieties', [UserController::class, 'index'])->name('allocatesocieties.index');
     Route::get('/{id}/show', [UserController::class, 'show'])->name('allocatesocieties.show');
     Route::get('/{id}/actions', [UserController::class, 'action'])->name('allocatesocieties.actions');
-    //Route::post('/actionpost', [UserController::class, 'actionpost'])->name('allocatesocieties.actionpost');
+    Route::post('/actionpost', [UserController::class, 'actionpost'])->name('allocatesocieties.actionpost');
 
     // Route::get('/searchHouse', [UserController::class, 'searchHouse'])->name('allocatesocieties.searchHouse');
 
