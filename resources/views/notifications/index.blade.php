@@ -21,7 +21,7 @@
                             <a href="javascript:void(0)" class="dropdown-notifications-archive">
                                 @foreach($data as $key => $notification)
                                 <tr>
-                                    <td>{{ ($data->currentpage()-1) * $data->perpage() + $key + 1 }}</td>
+                                    <td>{{ $key+1 }}</td>
                                     <td>{{ $notification->name}}</td>
                                     <td>{{ $notification->house_no}}</td>
                                     <td>{{ $notification->society_name}}</td>
