@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 
-<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed" dir="ltr" data-theme="theme-default"
-    data-assets-path="/assets/" data-template="vertical-menu-template-starter">
+<html lang="en" class="light-style layout-navbar-fixed layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="/assets/" data-template="vertical-menu-template-starter">
 
 <head>
     <meta charset="utf-8" />
-    @if(auth()->user()->is_admin == 1)
+    <!-- @if(auth()->user()->is_admin == 1)
     <title>Admin Dashboard</title>
     @else
     <title>Employee Dashboard</title>
-    @endif
+    @endif -->
+    <title>KWV</title>
 
     <meta name="description" content="" />
 
@@ -19,9 +19,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
-        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet" />
 
     <!-- Icons -->
     <link rel="stylesheet" href="/assets/vendor/fonts/fontawesome.css" />
@@ -55,13 +53,10 @@
     <script src="/assets/js/config.js"></script>
 
     <!--    -->
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
     </script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -69,10 +64,10 @@
 
 
     <style>
-    label.error {
-        color: #dc3545;
-        font-size: 14px;
-    }
+        label.error {
+            color: #dc3545;
+            font-size: 14px;
+        }
     </style>
 </head>
 
@@ -106,29 +101,25 @@
                             <div data-i18n="DASHBOARD">DASHBOARD</div>
                         </a>
                     </li>
-                    <li
-                        class="menu-item {{ Request::routeIs(['employees.index', 'employees.create', 'employees.edit']) ? 'active' : '' }}">
+                    <li class="menu-item {{ Request::routeIs(['employees.index', 'employees.create', 'employees.edit']) ? 'active' : '' }}">
                         <a href="{{ url('employees') }}" class="menu-link">
                             <i class="menu-icon tf-icons ti ti-users"></i>
                             <div data-i18n="EMPLOYEE">EMPLOYEE</div>
                         </a>
                     </li>
-                    <li
-                        class="menu-item {{ Request::routeIs(['societies.index', 'societies.create', 'societies.edit', 'societies.fileImportExport']) ? 'active' : '' }}">
+                    <li class="menu-item {{ Request::routeIs(['societies.index', 'societies.create', 'societies.edit', 'societies.fileImportExport']) ? 'active' : '' }}">
                         <a href="{{ url('societies') }}" class="menu-link">
                             <i class="menu-icon tf-icons ti ti-building"></i>
                             <div data-i18n="SOCIETY">SOCIETY</div>
                         </a>
                     </li>
-                    <li
-                        class="menu-item {{ Request::routeIs(['houses.index', 'houses.create', 'houses.edit', 'houses.fileImportExport']) ? 'active' : '' }}">
+                    <li class="menu-item {{ Request::routeIs(['houses.index', 'houses.create', 'houses.edit', 'houses.fileImportExport']) ? 'active' : '' }}">
                         <a href="{{ url('houses') }}" class="menu-link">
                             <i class="menu-icon tf-icons ti ti-home"></i>
                             <div data-i18n="HOUSE">HOUSE</div>
                         </a>
                     </li>
-                    <li
-                        class="menu-item {{ Request::routeIs(['employee_houses.index', 'employee_houses.create', 'employee_houses.show', 'employee_houses.show_house']) ? 'active' : '' }}">
+                    <li class="menu-item {{ Request::routeIs(['employee_houses.index', 'employee_houses.create', 'employee_houses.show', 'employee_houses.show_house']) ? 'active' : '' }}">
                         <a href="{{ url('employee_houses') }}" class="menu-link">
                             <!-- <i class="menu-icon tf-icons ti ti-building-user"></i> -->
                             <i class="fa-solid fa-building-user"></i>&nbsp;
@@ -148,8 +139,7 @@
                             <div data-i18n="DASHBOARD">DASHBOARD</div>
                         </a>
                     </li>
-                    <li
-                        class="menu-item {{ Request::routeIs(['allocatesocieties.index', 'allocatesocieties.show', 'allocatesocieties.actions']) ? 'active' : '' }}">
+                    <li class="menu-item {{ Request::routeIs(['allocatesocieties.index', 'allocatesocieties.show', 'allocatesocieties.actions']) ? 'active' : '' }}">
                         <a href="{{ route('allocatesocieties.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons ti ti-building"></i>
                             <div data-i18n="ALLOCATED SOCIETY">ALLOCATED SOCIETY</div>
@@ -163,8 +153,7 @@
             <!-- Layout container -->
             <div class="layout-page">
                 <!-- Navbar -->
-                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
-                    id="layout-navbar">
+                <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
                     <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
                         <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                             <i class="ti ti-menu-2 ti-sm"></i>
@@ -182,8 +171,7 @@
                         <ul class="navbar-nav flex-row align-items-center ms-auto">
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                                    data-bs-toggle="dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
                                         <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
                                     </div>
@@ -194,8 +182,7 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="/assets/img/avatars/1.png" alt
-                                                            class="h-auto rounded-circle" />
+                                                        <img src="/assets/img/avatars/1.png" alt class="h-auto rounded-circle" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
@@ -230,8 +217,7 @@
                                                      document.getElementById('logout-form').submit();">
                                             <i class="ti ti-logout me-2 ti-sm"></i>{{ __('Logout') }}
                                         </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                            class="d-none">
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                         </form>
                                         </a>
@@ -255,15 +241,13 @@
                     <!-- Footer -->
                     <footer class="content-footer footer bg-footer-theme">
                         <div class="container-xxl">
-                            <div
-                                class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
+                            <div class="footer-container d-flex align-items-center justify-content-between py-2 flex-md-row flex-column">
                                 <div>
                                     ©
                                     <script>
-                                    document.write(new Date().getFullYear());
+                                        document.write(new Date().getFullYear());
                                     </script>
-                                    , made with ❤️ by <a href="http://thewebtime.in/" target="_blank"
-                                        class="fw-semibold">WEB-TIME</a>
+                                    , made with ❤️ by <a href="http://thewebtime.in/" target="_blank" class="fw-semibold">WEB-TIME</a>
                                 </div>
                             </div>
                         </div>
