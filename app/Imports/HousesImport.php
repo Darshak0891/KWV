@@ -26,10 +26,11 @@ class HousesImport implements ToModel
                 'society_id'   => $isExists->id,
                 'mobile_no'    => $row[3],
                 'box_no'       => $row[4],
-                'rent'         => $row[5],
+                'baki'         => $row[5],
+                'rent'         => $row[6],
             ]);
             HouseRent::create([
-                'house_id' => $insertData->id, 'rent' => $row[5], 'baki' => $row[5],
+                'house_id' => $insertData->id, 'rent' => $row[6], 'baki' => $row[5],
                 'date' => Carbon::now()
             ]);
         }
