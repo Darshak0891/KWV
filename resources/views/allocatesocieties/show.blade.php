@@ -32,7 +32,7 @@
                             <tr>
                                 <th>ID</th>
                                 <th>House No.</th>
-                                <th>Name</th>
+                                <!-- <th>Name</th> -->
                                 <th>Mobile No.</th>
                                 <th>Box No.</th>
                                 <th>Baki</th>
@@ -46,7 +46,7 @@
                             <tr>
                                 <td>{{ $key+1 }}</td>
                                 <td>{{ $data->house_no }}</td>
-                                <td>{{ $data->name }}</td>
+                                <!-- <td>{{ $data->name }}</td> -->
                                 <td>{{ $data->mobile_no }}</td>
                                 <td>{{ $data->box_no }}</td>
                                 <td>{{ $data->baki }}</td>

@@ -17,6 +17,6 @@ class ReportsExport implements FromCollection
         //return House::join()->all();
         return HouseRent::join('houses', 'houses.id', '=', 'house_rents.house_id')
             ->join('societies', 'societies.id', '=', 'houses.society_id')
-            ->select('houses.house_no', 'societies.society_name', 'houses.name', 'houses.mobile_no', 'houses.box_no', 'house_rents.baki', 'house_rents.rent', 'house_rents.jama', 'house_rents.date')->get();
+            ->select('houses.house_no', 'societies.society_name', 'houses.box_no', 'house_rents.baki', 'house_rents.rent', 'house_rents.jama', 'house_rents.date')->get();
     }
 }

@@ -19,7 +19,7 @@ class SocietyController extends Controller
                 if ($request->search) {
                     $query->where('society_name', 'LIKE', '%' . $request->search . '%');
                 }
-            })->paginate(5);
+            })->paginate(20);
             return view('societies.index', compact('society'));
         } catch (Exception $e) {
             return redirect()->back();

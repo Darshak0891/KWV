@@ -34,7 +34,7 @@ class HouseController extends Controller
                     }
                 })
                 ->whereBetween('house_rents.date', [$from, $to])
-                ->paginate(10);
+                ->paginate(100);
 
             return view('houses.index', compact('house'));
         } catch (Exception $e) {
