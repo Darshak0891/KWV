@@ -119,7 +119,7 @@ class EmployeeHouseController extends Controller
                             $query->where('nod', 1);
                         }
                     }
-                })
+                })->orderBy('house_no', 'ASC')
                 ->whereBetween('house_rents.date', [$from, $to])
                 ->where('society_id', $id)->get();
             //dd($show_house);
