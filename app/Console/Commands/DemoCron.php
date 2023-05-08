@@ -50,7 +50,7 @@ class DemoCron extends Command
             foreach ($house_rent as $data) {
                 HouseRent::create(
                     [
-                        'house_id' => $data['house_id'], 'rent' => $data['rent'] + $data['baki'],
+                        'house_id' => $data['house_id'], 'rent' => $data['rent'],
                         'baki' => $data['rent'] + $data['baki'], 'date' => Carbon::now()
                     ]
                 );

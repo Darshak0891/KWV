@@ -146,7 +146,7 @@ class EmployeeHouseController extends Controller
 
             $data = HouseRent::where('id', $request['actionid'])->first();
             //dd($data);
-            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $request['baki'] + $request['rent'] - $request['jama'], 'remark' => $request['remark'], 'rent' => $request['rent'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
+            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' =>  $request['rent'] - $request['jama'], 'remark' => $request['remark'], 'rent' => $request['rent'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
 
             Admin_log::create([
                 'user_id' => $user->id, 'type_id' => 3, 'action_type_id' => 2, 'request_id' => $id,
