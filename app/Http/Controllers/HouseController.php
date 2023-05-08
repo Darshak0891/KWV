@@ -32,7 +32,7 @@ class HouseController extends Controller
                         $query->where('society_name', 'LIKE', '%' . $request->search . '%')
                             ->orWhere('house_no', 'LIKE', '%' . $request->search . '%');
                     }
-                })
+                })->orderBy('house_no', 'ASC')
                 ->whereBetween('house_rents.date', [$from, $to])
                 ->paginate(100);
 
