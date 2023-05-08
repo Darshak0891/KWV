@@ -12,20 +12,26 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th>ID</th>
                                 <th>Society Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($show as $data)
+                            @foreach($show as $key =>$data)
                             <tr>
+                                <td>{{ $key+1 }}</td>
                                 <td>{{$data->society_name}}</td>
                                 <td>
-                                    <a href="{{ route('employee_houses.show_house', $data->societyId) }}" class="btn btn-primary">Show Houses</a>
-                                    <form action="{{ route('employee_houses.delete', $data->id)}}" method="post" style="display: inline-block">
+                                    <a href="{{ route('employee_houses.show_house', $data->societyId) }}"
+                                        class="btn btn-primary">Show Houses</a>
+                                    <form action="{{ route('employee_houses.delete', $data->id)}}" method="post"
+                                        style="display: inline-block">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to remove this society?')" type="submit" style="height:38px;">Remove Society</button>
+                                        <button class="btn btn-danger btn-sm"
+                                            onclick="return confirm('Are you sure you want to remove this society?')"
+                                            type="submit" style="height:38px;">Remove Society</button>
                                     </form>
                                 </td>
                             </tr>
