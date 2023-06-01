@@ -31,8 +31,20 @@ class UserController extends Controller
     public function show(Request $request, $id)
     {
         try {
-            $from = Carbon::now()->startOfMonth();
-            $to = Carbon::now()->endOfMonth()->addDay(9);
+            $currentDate = date('Y-m-d');
+            $currentDate = date('Y-m-d', strtotime($currentDate));
+            //echo $currentDate; // echos today! 
+            $contractDateBegin = date('Y-m-d', strtotime("01/" . date('m') . "/" . date('y')));
+            $contractDateEnd = date('Y-m-d', strtotime("08/" . date('m') . "/" . date('y')));
+            // dd($contractDateBegin, $contractDateEnd);
+            if (($currentDate >= $contractDateBegin) && ($currentDate <= $contractDateEnd)) {
+                $from = Carbon::now()->startOfMonth()->subMonthsNoOverflow();
+                $to = Carbon::now()->endOfMonth()->subMonthsNoOverflow()->addDay(9);
+                // dd($from, $to);
+            } else {
+                $from = Carbon::now()->startOfMonth();
+                $to = Carbon::now()->endOfMonth()->addDay(9);
+            }
             $show_house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
                 ->select(
                     'houses.id',

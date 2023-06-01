@@ -88,8 +88,19 @@ class EmployeeHouseController extends Controller
             /* if (isset($request->system)) {
                 dd($request);
             } */
-            $from = Carbon::now()->startOfMonth();
-            $to = Carbon::now()->endOfMonth()->addDay(9);
+            $currentDate = date('Y-m-d');
+            $currentDate = date('Y-m-d', strtotime($currentDate));
+            $contractDateBegin = date('Y-m-d', strtotime("01/" . date('m') . "/" . date('y')));
+            $contractDateEnd = date('Y-m-d', strtotime("08/" . date('m') . "/" . date('y')));
+            // dd($contractDateBegin, $contractDateEnd);
+            if (($currentDate >= $contractDateBegin) && ($currentDate <= $contractDateEnd)) {
+                $from = Carbon::now()->startOfMonth()->subMonthsNoOverflow();
+                $to = Carbon::now()->endOfMonth()->subMonthsNoOverflow()->addDay(9);
+                // dd($from, $to);
+            } else {
+                $from = Carbon::now()->startOfMonth();
+                $to = Carbon::now()->endOfMonth()->addDay(9);
+            }
             $show_house = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
                 ->select(
                     'houses.id',
@@ -135,9 +146,21 @@ class EmployeeHouseController extends Controller
             $user = auth()->user();
 
             $old_data = House::where('id', $id)->first();
-            $from = Carbon::now()->startOfMonth();
-            $to = Carbon::now()->endOfMonth()->addDay(9);
-            $houseRentData = HouseRent::where('id', $id)->whereBetween('date', [$from, $to])->select('house_rents.rent', 'house_rents.dc', 'house_rents.nod')->first();
+            $currentDate = date('Y-m-d');
+            $currentDate = date('Y-m-d', strtotime($currentDate));
+            //echo $currentDate; // echos today! 
+            $contractDateBegin = date('Y-m-d', strtotime("01/" . date('m') . "/" . date('y')));
+            $contractDateEnd = date('Y-m-d', strtotime("08/" . date('m') . "/" . date('y')));
+            // dd($contractDateBegin, $contractDateEnd);
+            if (($currentDate >= $contractDateBegin) && ($currentDate <= $contractDateEnd)) {
+                $from = Carbon::now()->startOfMonth()->subMonthsNoOverflow();
+                $to = Carbon::now()->endOfMonth()->subMonthsNoOverflow()->addDay(9);
+                // dd($from, $to);
+            } else {
+                $from = Carbon::now()->startOfMonth();
+                $to = Carbon::now()->endOfMonth()->addDay(9);
+            }
+            $houseRentData = HouseRent::where('id', $id)->whereBetween('house_rents.date', [$from, $to])->select('house_rents.rent', 'house_rents.dc', 'house_rents.nod')->first();
             $old_data['rent'] = $houseRentData->rent;
             $old_data['dc'] = $houseRentData->dc;
             $old_data['nod'] = $houseRentData->nod;
@@ -146,7 +169,7 @@ class EmployeeHouseController extends Controller
 
             $data = HouseRent::where('id', $request['actionid'])->first();
             //dd($data);
-            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $request['baki'] + $request['rent'] - $request['jama'], 'remark' => $request['remark'], 'rent' => $request['rent'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
+            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $request['rent'] - $request['jama'], 'remark' => $request['remark'], 'rent' => $request['rent'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
 
             Admin_log::create([
                 'user_id' => $user->id, 'type_id' => 3, 'action_type_id' => 2, 'request_id' => $id,

@@ -154,7 +154,7 @@ class EmployeeController extends Controller
                     if ($request->search) {
                         $query->where('name', 'LIKE', '%' . $request->search . '%');
                     }
-                })->paginate(5);
+                })->paginate(50);
             return view('adminlogs.index', compact('admin_log'));
         } catch (Exception $e) {
             return redirect()->back();

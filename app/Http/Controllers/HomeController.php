@@ -76,8 +76,19 @@ class HomeController extends Controller
             $auth = auth()->user();
             $societyData = EmployeeHouse::where('user_id', $auth->id)->get();
             $societyDataPluck = $societyData->pluck('society_id');
-            $from = Carbon::now()->startOfMonth();
-            $to = Carbon::now()->endOfMonth()->addDay(9);
+            $currentDate = date('Y-m-d');
+            $currentDate = date('Y-m-d', strtotime($currentDate));
+            $contractDateBegin = date('Y-m-d', strtotime("01/" . date('m') . "/" . date('y')));
+            $contractDateEnd = date('Y-m-d', strtotime("08/" . date('m') . "/" . date('y')));
+            // dd($contractDateBegin, $contractDateEnd);
+            if (($currentDate >= $contractDateBegin) && ($currentDate <= $contractDateEnd)) {
+                $from = Carbon::now()->startOfMonth()->subMonthsNoOverflow();
+                $to = Carbon::now()->endOfMonth()->subMonthsNoOverflow()->addDay(9);
+                // dd($from, $to);
+            } else {
+                $from = Carbon::now()->startOfMonth();
+                $to = Carbon::now()->endOfMonth()->addDay(9);
+            }
             $housesData = House::join('house_rents', 'house_rents.house_id', '=', 'houses.id')
                 ->whereIn('society_id', $societyDataPluck)->whereBetween('house_rents.date', [$from, $to])
                 ->where(['house_rents.dc' => 0, 'nod' => 0])
