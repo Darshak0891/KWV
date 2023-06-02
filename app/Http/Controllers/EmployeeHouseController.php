@@ -92,7 +92,7 @@ class EmployeeHouseController extends Controller
             $currentDate = date('Y-m-d', strtotime($currentDate));
             $contractDateBegin = date('Y-m-d', strtotime("01/" . date('m') . "/" . date('y')));
             $contractDateEnd = date('Y-m-d', strtotime("08/" . date('m') . "/" . date('y')));
-            // dd($contractDateBegin, $contractDateEnd);
+            //dd($contractDateBegin, $contractDateEnd);
             if (($currentDate >= $contractDateBegin) && ($currentDate <= $contractDateEnd)) {
                 $from = Carbon::now()->startOfMonth()->subMonthsNoOverflow();
                 $to = Carbon::now()->endOfMonth()->subMonthsNoOverflow()->addDay(9);

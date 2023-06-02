@@ -8,13 +8,18 @@ use App\Models\HouseRent;
 use Illuminate\Http\Request;
 use App\Exports\ReportsExport;
 use Maatwebsite\Excel\Facades\Excel;
+use \Exception;
+use \Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ReportController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request['from'] && $request['to']) {
+        if ($request['month']) {
             //dd($request);
+            $data = explode('-', $request['month']);
+            //dd($data);
             $report = HouseRent::join('houses', 'houses.id', '=', 'house_rents.house_id')
                 ->join('societies', 'societies.id', '=', 'houses.society_id')
                 ->join('employee_houses', 'employee_houses.society_id', '=', 'societies.id')
@@ -25,7 +30,9 @@ class ReportController extends Controller
                         $query->where('users.id', $request->report);
                     }
                 })
-                ->whereBetween('house_rents.created_at', [$request['from'], $request['to']])->get();
+                ->whereMonth('house_rents.created_at', '=', $data[1])
+                ->whereYear('house_rents.created_at', '=', $data[0])
+                ->get();
 
             //dd($report);
         } else {
