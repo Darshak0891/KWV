@@ -22,16 +22,6 @@ class HouseController extends Controller
     public function index(Request $request)
     {
         try {
-            $currentDate = date('Y-d-m');
-            $contractDateBegin = date('Y-m-d', strtotime("01/" . date('m') . "/" . date('y')));
-            $contractDateEnd = date('Y-m-d', strtotime("08/" . date('m') . "/" . date('y')));
-            if (($currentDate >= $contractDateBegin) && ($currentDate <= $contractDateEnd)) {
-                $from = Carbon::now()->startOfMonth()->subMonthsNoOverflow();
-                $to = Carbon::now()->endOfMonth()->subMonthsNoOverflow()->addDay(9);
-            } else {
-                $from = Carbon::now()->startOfMonth();
-                $to = Carbon::now()->endOfMonth()->addDay(9);
-            }
             $house = House::join('societies', 'societies.id', '=', 'houses.society_id')
                 ->join('house_rents', 'house_rents.house_id', '=', 'houses.id')
                 ->select('houses.id', 'houses.house_no', 'houses.name', 'houses.mobile_no', 'houses.box_no', 'house_rents.rent', 'societies.society_name')
@@ -41,7 +31,6 @@ class HouseController extends Controller
                             ->orWhere('house_no', 'LIKE', '%' . $request->search . '%');
                     }
                 })->orderBy('house_no', 'ASC')
-                ->whereBetween('house_rents.date', [$from, $to])
                 ->paginate(100);
             return view('houses.index', compact('house'));
         } catch (Exception $e) {
@@ -132,7 +121,7 @@ class HouseController extends Controller
             $old_data['dc'] = $houseRentData->dc;
             $old_data['nod'] = $houseRentData->nod;
 
-            House::whereId($id)->update(['society_id' => $request['society_id'], 'house_no' => $request['house_no'], 'mobile_no' => $request['mobile_no'], 'box_no' => $request['box_no']]);
+            House::where('id', $id)->update(['society_id' => $request['society_id'], 'house_no' => $request['house_no'], 'mobile_no' => $request['mobile_no'], 'box_no' => $request['box_no']]);
 
             HouseRent::where('house_id', $id)->whereBetween('date', [$from, $to])->update(['rent' => $request['rent'], 'baki' => $request['rent'] - $request['jama'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
             Admin_log::create([

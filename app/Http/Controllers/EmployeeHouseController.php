@@ -141,32 +141,17 @@ class EmployeeHouseController extends Controller
             $user = auth()->user();
 
             $old_data = House::where('id', $id)->first();
-            $currentDate = date('Y-d-m');
-            $contractDateBegin = date('Y-m-d', strtotime("01/" . date('m') . "/" . date('y')));
-            $contractDateEnd = date('Y-m-d', strtotime("08/" . date('m') . "/" . date('y')));
-            if (($currentDate >= $contractDateBegin) && ($currentDate <= $contractDateEnd)) {
-                $from = Carbon::now()->startOfMonth()->subMonthsNoOverflow();
-                $to = Carbon::now()->endOfMonth()->subMonthsNoOverflow()->addDay(9);
-            } else {
-                $from = Carbon::now()->startOfMonth();
-                $to = Carbon::now()->endOfMonth()->addDay(9);
-            }
-            $houseRentData = HouseRent::where('id', $id)->whereBetween('house_rents.date', [$from, $to])->select('house_rents.rent', 'house_rents.dc', 'house_rents.nod')->first();
+            $houseRentData = HouseRent::where('id', $request['actionid'])->select('house_rents.rent', 'house_rents.dc', 'house_rents.nod', 'house_rents.baki')->first();
             $old_data['rent'] = $houseRentData->rent;
             $old_data['dc'] = $houseRentData->dc;
             $old_data['nod'] = $houseRentData->nod;
-
             House::where('id', $id)->update(['house_no' => $request['house_no'], 'name' => $request['name'], 'mobile_no' => $request['mobile_no'], 'box_no' => $request['box_no']]);
 
-            $data = HouseRent::where('id', $request['actionid'])->first();
-            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $request['rent'] - $request['jama'], 'remark' => $request['remark'], 'rent' => $request['rent'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
-
+            HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $houseRentData->baki - $request['jama'], 'remark' => $request['remark'], 'rent' => $request['rent'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
             Admin_log::create([
                 'user_id' => $user->id, 'type_id' => 3, 'action_type_id' => 2, 'request_id' => $id,
                 'message' => 'House Updated.', 'edit_old_data' => json_encode($old_data), 'edit_new_data' => json_encode($request->all())
             ]);
-
-
             return redirect()->back()->with('success', 'Successfully Taken.');
         } catch (Exception $e) {
             return redirect()->back();
