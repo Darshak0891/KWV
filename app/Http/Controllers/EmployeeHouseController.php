@@ -130,7 +130,6 @@ class EmployeeHouseController extends Controller
                 })->orderBy('house_no', 'ASC')
                 ->whereBetween('house_rents.date', [$from, $to])
                 ->where('society_id', $id)->get();
-            // dd($show_house);
             return view('employee_houses.show_house', compact('show_house', 'id'));
         } catch (Exception $e) {
             return redirect()->back();
@@ -142,16 +141,12 @@ class EmployeeHouseController extends Controller
             $user = auth()->user();
 
             $old_data = House::where('id', $id)->first();
-            $currentDate = date('Y-m-d');
-            $currentDate = date('Y-m-d', strtotime($currentDate));
-            //echo $currentDate; // echos today! 
+            $currentDate = date('Y-d-m');
             $contractDateBegin = date('Y-m-d', strtotime("01/" . date('m') . "/" . date('y')));
             $contractDateEnd = date('Y-m-d', strtotime("08/" . date('m') . "/" . date('y')));
-            // dd($contractDateBegin, $contractDateEnd);
             if (($currentDate >= $contractDateBegin) && ($currentDate <= $contractDateEnd)) {
                 $from = Carbon::now()->startOfMonth()->subMonthsNoOverflow();
                 $to = Carbon::now()->endOfMonth()->subMonthsNoOverflow()->addDay(9);
-                // dd($from, $to);
             } else {
                 $from = Carbon::now()->startOfMonth();
                 $to = Carbon::now()->endOfMonth()->addDay(9);
@@ -164,7 +159,6 @@ class EmployeeHouseController extends Controller
             House::where('id', $id)->update(['house_no' => $request['house_no'], 'name' => $request['name'], 'mobile_no' => $request['mobile_no'], 'box_no' => $request['box_no']]);
 
             $data = HouseRent::where('id', $request['actionid'])->first();
-            //dd($data);
             HouseRent::where('id', $request['actionid'])->update(['jama' => $request['jama'], 'baki' => $request['rent'] - $request['jama'], 'remark' => $request['remark'], 'rent' => $request['rent'], 'dc' => $request['dc'], 'nod' => $request['nod']]);
 
             Admin_log::create([
@@ -175,7 +169,6 @@ class EmployeeHouseController extends Controller
 
             return redirect()->back()->with('success', 'Successfully Taken.');
         } catch (Exception $e) {
-            //dd($e);
             return redirect()->back();
         }
     }

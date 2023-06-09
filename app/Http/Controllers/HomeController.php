@@ -45,15 +45,25 @@ class HomeController extends Controller
     public function adminDashboard()
     {
         try {
+            $currentDate = date('Y-d-m');
+            $contractDateBegin = date('Y-m-d', strtotime("01/" . date('m') . "/" . date('y')));
+            $contractDateEnd = date('Y-m-d', strtotime("08/" . date('m') . "/" . date('y')));
+            if (($currentDate >= $contractDateBegin) && ($currentDate <= $contractDateEnd)) {
+                $from = Carbon::now()->startOfMonth()->subMonthsNoOverflow();
+                $to = Carbon::now()->endOfMonth()->subMonthsNoOverflow()->addDay(9);
+            } else {
+                $from = Carbon::now()->startOfMonth();
+                $to = Carbon::now()->endOfMonth()->addDay(9);
+            }
             $totalEmp = User::count();
             $totalSoc = Society::count();
             $totalHouse = House::count();
-
             $userSociety = EmployeeHouse::join('users', 'users.id', '=', 'employee_houses.user_id')
                 ->join('houses', 'houses.society_id', '=', 'employee_houses.society_id')
                 ->join('house_rents', 'house_rents.house_id', '=', 'houses.id')
-                ->selectRaw('users.name, count(houses.id) as totalHouses, sum(house_rents.rent) as totalRents, sum(house_rents.baki) as totalBaki, sum(house_rents.jama) as totalJama')
+                ->selectRaw('users.name, count(house_rents.house_id) as totalHouses , sum(house_rents.rent) as totalRents, sum(house_rents.baki) as totalBaki, sum(house_rents.jama) as totalJama')
                 ->groupBy('users.id')
+                ->whereMonth('date', [$from, $to])
                 ->get();
 
             $userSocietyData = EmployeeHouse::join('users', 'users.id', '=', 'employee_houses.user_id')
