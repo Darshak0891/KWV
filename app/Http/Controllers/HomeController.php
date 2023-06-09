@@ -76,8 +76,7 @@ class HomeController extends Controller
             $auth = auth()->user();
             $societyData = EmployeeHouse::where('user_id', $auth->id)->get();
             $societyDataPluck = $societyData->pluck('society_id');
-            $currentDate = date('Y-m-d');
-            $currentDate = date('Y-m-d', strtotime($currentDate));
+            $currentDate = date('Y-d-m');
             $contractDateBegin = date('Y-m-d', strtotime("01/" . date('m') . "/" . date('y')));
             $contractDateEnd = date('Y-m-d', strtotime("08/" . date('m') . "/" . date('y')));
             // dd($contractDateBegin, $contractDateEnd);

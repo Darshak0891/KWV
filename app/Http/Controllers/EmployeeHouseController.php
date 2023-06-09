@@ -88,15 +88,12 @@ class EmployeeHouseController extends Controller
             /* if (isset($request->system)) {
                 dd($request);
             } */
-            $currentDate = date('Y-m-d');
-            $currentDate = date('Y-m-d', strtotime($currentDate));
+            $currentDate = date('Y-d-m');
             $contractDateBegin = date('Y-m-d', strtotime("01/" . date('m') . "/" . date('y')));
             $contractDateEnd = date('Y-m-d', strtotime("08/" . date('m') . "/" . date('y')));
-            //dd($contractDateBegin, $contractDateEnd);
             if (($currentDate >= $contractDateBegin) && ($currentDate <= $contractDateEnd)) {
                 $from = Carbon::now()->startOfMonth()->subMonthsNoOverflow();
                 $to = Carbon::now()->endOfMonth()->subMonthsNoOverflow()->addDay(9);
-                // dd($from, $to);
             } else {
                 $from = Carbon::now()->startOfMonth();
                 $to = Carbon::now()->endOfMonth()->addDay(9);
@@ -133,7 +130,7 @@ class EmployeeHouseController extends Controller
                 })->orderBy('house_no', 'ASC')
                 ->whereBetween('house_rents.date', [$from, $to])
                 ->where('society_id', $id)->get();
-            //dd($show_house);
+            // dd($show_house);
             return view('employee_houses.show_house', compact('show_house', 'id'));
         } catch (Exception $e) {
             return redirect()->back();
@@ -142,7 +139,6 @@ class EmployeeHouseController extends Controller
     public function actionpost(Request $request, $id)
     {
         try {
-            //dd($request);
             $user = auth()->user();
 
             $old_data = House::where('id', $id)->first();

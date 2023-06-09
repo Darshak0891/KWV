@@ -17,9 +17,7 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         if ($request['month']) {
-            //dd($request);
             $data = explode('-', $request['month']);
-            //dd($data);
             $report = HouseRent::join('houses', 'houses.id', '=', 'house_rents.house_id')
                 ->join('societies', 'societies.id', '=', 'houses.society_id')
                 ->join('employee_houses', 'employee_houses.society_id', '=', 'societies.id')

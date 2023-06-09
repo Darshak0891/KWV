@@ -22,22 +22,16 @@ class HouseController extends Controller
     public function index(Request $request)
     {
         try {
-            $currentDate = date('Y-m-d');
-            $currentDate = date('Y-m-d', strtotime($currentDate));
-            //echo $currentDate; // echos today! 
+            $currentDate = date('Y-d-m');
             $contractDateBegin = date('Y-m-d', strtotime("01/" . date('m') . "/" . date('y')));
             $contractDateEnd = date('Y-m-d', strtotime("08/" . date('m') . "/" . date('y')));
-            // dd($contractDateBegin, $contractDateEnd);
             if (($currentDate >= $contractDateBegin) && ($currentDate <= $contractDateEnd)) {
                 $from = Carbon::now()->startOfMonth()->subMonthsNoOverflow();
                 $to = Carbon::now()->endOfMonth()->subMonthsNoOverflow()->addDay(9);
-                // dd($from, $to);
             } else {
                 $from = Carbon::now()->startOfMonth();
                 $to = Carbon::now()->endOfMonth()->addDay(9);
             }
-            //dd(1);
-            //dd($from, $to);
             $house = House::join('societies', 'societies.id', '=', 'houses.society_id')
                 ->join('house_rents', 'house_rents.house_id', '=', 'houses.id')
                 ->select('houses.id', 'houses.house_no', 'houses.name', 'houses.mobile_no', 'houses.box_no', 'house_rents.rent', 'societies.society_name')
@@ -49,10 +43,8 @@ class HouseController extends Controller
                 })->orderBy('house_no', 'ASC')
                 ->whereBetween('house_rents.date', [$from, $to])
                 ->paginate(100);
-            //dd($house);
             return view('houses.index', compact('house'));
         } catch (Exception $e) {
-            //dd($e);
             return redirect()->back();
         }
     }
